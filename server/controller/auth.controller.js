@@ -62,13 +62,14 @@ export const login = async (req, res) => {
   }
 };
 
-export const getMe = async(req, res) =>{
-  try{
-    const user = await Auth.findById(req.user?.id);
-    res.json({user});
-  }catch(err)
-  {
-    console.log(err);
+export const getMe = async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ error: "Not authorized" });
+    }
+    res.status(200).json({ user: req.user });
+  } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Server error" });
   }
-}
+};

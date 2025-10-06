@@ -2,34 +2,40 @@ import {createContext, useContext, useState, useEffect} from "react"
 
 export const AuthContext = createContext();
 
-export const useAuthContext = () =>{
-    return useContext(AuthContext);
-}
+export const useAuthContext = () => useContext(AuthContext);
 
-export const AuthProvider = ({children}) =>{
-    const [user, setUser] = useState(null);
-    useEffect(()=>{
-        const handleFetch = async() =>{
-            try{
-                const response = await fetch("http://localhost:5000/api/me", {
-                    credentials:"include"
-                })
-                if (!response.ok) {
-                throw new Error("Error in context fetch");
-                }
-                const data = await response.json();
-                if(data)
-                {
-                    setUser(data.user);
-                }
-            }catch(err)
-            {
-                console.log(err);
-            }
+export const AuthProvider = ({children}) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const handleFetch = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/auth/me", {
+            method : "GET",
+            headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include"
+        });
+        if (!response.ok) throw new Error("Error in context fetch");
+        const data = await response.json();
+        console.log(data);
+        if (data) {
+          setUser(data.user);
         }
-        handleFetch();
-    }, [])
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    handleFetch();
+  }, []);
 
-    const value = {user, setUser};
-    return <AuthContext.Provider value = {value}>{children}</AuthContext.Provider>
-}
+  return (
+    <AuthContext.Provider value={{user, setUser, loading}}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
