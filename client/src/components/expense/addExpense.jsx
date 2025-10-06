@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setUser } from "../../redux/userSlice";
+import { useSelector } from "react-redux";
 
 const AddExpense = () => {
   const user = useSelector((state) => state.user);
@@ -15,18 +14,7 @@ const AddExpense = () => {
   const [selectedGroup, setSelectedGroup] = useState("");
   const [paidBy, setPaidBy] = useState("");
   const [splitDetails, setSplitDetails] = useState([]);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const res = await fetch("http://localhost:5000/api/auth/all");
-      const data = await res.json();
-      dispatch(setUser(data));
-    };
-    fetchUsers();
-  }, [dispatch]);
-
-  // update splitDetails whenever selectedGroup changes
   useEffect(() => {
     if (selectedGroup) {
       const groupObj = group.find((g) => g._id === selectedGroup);
@@ -75,7 +63,6 @@ const AddExpense = () => {
   return (
     <div className="flex justify-center min-h-screen items-center">
       <form className="flex flex-col gap-2 p-4 border rounded" onSubmit={handleExpense}>
-        {/* Description & Amount */}
         <input
           className="border p-1 rounded"
           placeholder="description"
@@ -89,7 +76,6 @@ const AddExpense = () => {
           onChange={(e) => setAmount(e.target.value)}
         />
 
-        {/* Paid By */}
         <div className="relative">
           <button
             type="button"
@@ -119,7 +105,6 @@ const AddExpense = () => {
           )}
         </div>
 
-        {/* Group Selector */}
         <div className="relative">
           <button
             type="button"
@@ -149,7 +134,6 @@ const AddExpense = () => {
           )}
         </div>
 
-        {/* Category */}
         <input
           className="border p-1 rounded"
           placeholder="Enter Category"
@@ -157,7 +141,6 @@ const AddExpense = () => {
           onChange={(e) => setCategory(e.target.value)}
         />
 
-        {/* Split Type Selector */}
         <div>
           <label className="mr-2 font-semibold">Split Type:</label>
           <select
@@ -170,8 +153,6 @@ const AddExpense = () => {
             <option value="percentage">Percentage</option>
           </select>
         </div>
-
-        {/* Split Details */}
         {selectedGroup && splitDetails.length > 0 && (
           <div className="border p-2 rounded mt-2">
             <h4 className="font-semibold mb-1">Split Details:</h4>
@@ -192,7 +173,6 @@ const AddExpense = () => {
           </div>
         )}
 
-        {/* Date */}
         <div>
           <label className="mr-2 font-semibold">Date:</label>
           <input
@@ -203,7 +183,6 @@ const AddExpense = () => {
           />
         </div>
 
-        {/* Submit */}
         <button
           type="submit"
           className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded mt-2 cursor-pointer"

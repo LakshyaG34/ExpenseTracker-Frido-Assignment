@@ -9,6 +9,7 @@ import Login from "./pages/signin";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setGroup } from "./redux/groupSlice";
+import { setUser } from "./redux/userSlice";
 
 function App() {
   const { user, loading } = useAuthContext();
@@ -21,12 +22,16 @@ function App() {
   useEffect(() => {
     const handleGroups = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/groups", {
+        const responseGroups = await fetch("http://localhost:5000/api/groups", {
           credentials: "include"
         });
-        if (!response.ok) throw new Error("Error Fetching groups");
-        const data = await response.json();
-        dispatch(setGroup(data));
+        const groups = await responseGroups.json();
+        dispatch(setGroup(groups));
+        const responseUsers = await fetch("http://localhost:5000/api/auth/all", {
+          credentials: "include"
+        });
+        const users = await responseUsers.json();
+        dispatch(setUser(users));
       } catch (err) {
         console.log(err);
       }
