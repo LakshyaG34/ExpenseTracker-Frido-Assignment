@@ -73,3 +73,14 @@ export const getMe = async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 };
+
+export const getUsers = async (req, res) => {
+  try {
+    const allUsers = await Auth.find().select("name email _id");
+    res.status(200).json(allUsers);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+

@@ -23,15 +23,14 @@ export const createGroup = async(req, res) =>{
 
 export const getGroup = async(req, res) =>{
     try{
-        const {name} = req.body;
-        const group = await Group.findOne({ name })
+        const groups = await Group.find()
         .populate("members", "name email")
         .populate("createdBy", "name email");
-        if(!group)
+        if(!groups)
         {
             res.status(404).json({err : "Group does not exist"})
         }
-        res.status(200).json(group);
+        res.status(200).json(groups);
     }catch(err)
     {
         console.log(err);

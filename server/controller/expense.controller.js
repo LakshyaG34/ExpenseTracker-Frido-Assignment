@@ -28,6 +28,7 @@ export const createExpense = async (req, res) => {
     });
 
     res.status(201).json(expense);
+    console.log(expense);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Internal Server Error" });
