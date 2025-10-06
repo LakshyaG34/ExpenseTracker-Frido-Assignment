@@ -17,8 +17,7 @@ const Expense = () => {
           throw new Error("Cannot fetch Expense");
         }
         const data = await response.json();
-        setExpenses([data]); // If API returns a single object
-        // If your API returns an array, just do setExpenses(data);
+        setExpenses([data]);
       } catch (err) {
         console.log(err);
       } finally {
