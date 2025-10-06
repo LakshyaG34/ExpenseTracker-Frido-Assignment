@@ -5,9 +5,7 @@ const router = express.Router();
 
 router.post("/signup", signup)
 router.post("/login", login)
+// router.post("/logout", login)
 router.post("/me", getMe)
-// router.get("/auth", (req, res)=>{
-//     res.send("hello")
-// })
 
 export default router;
