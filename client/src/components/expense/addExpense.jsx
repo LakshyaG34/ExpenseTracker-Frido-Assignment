@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {addExpense} from "../../redux/expenseSlice.js"
 
 const AddExpense = () => {
   const user = useSelector((state) => state.user);
@@ -14,6 +15,8 @@ const AddExpense = () => {
   const [selectedGroup, setSelectedGroup] = useState("");
   const [paidBy, setPaidBy] = useState("");
   const [splitDetails, setSplitDetails] = useState([]);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (selectedGroup) {
@@ -53,6 +56,8 @@ const AddExpense = () => {
         }),
       });
       if (!response.ok) throw new Error("Cannot Send Expense");
+      const data = await response.json();
+      dispatch(addExpense(data))
       alert("Expense Added")
       console.log("Expense added");
     } catch (err) {

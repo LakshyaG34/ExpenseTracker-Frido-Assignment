@@ -1,7 +1,9 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {removeExpense} from "../../redux/expenseSlice.js"
 
 const Expense = () => {
   const expenses = useSelector((state) => state.expense);
+  const dispatch = useDispatch();
 
   const handleDelete = async (expenseId) => {
     try {
@@ -14,6 +16,7 @@ const Expense = () => {
       {
         throw new Error("Error in handleExpense Delete")
       }
+      dispatch(removeExpense(expenseId))
       alert("Expense Deleted!!!")
     } catch (err) {
       console.log(err);
