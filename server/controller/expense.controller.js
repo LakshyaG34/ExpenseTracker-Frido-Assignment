@@ -67,3 +67,19 @@ export const getExpenses = async(req, res) =>{
     }
 }
 
+export const deleteExpense = async(req, res)=>{
+  try{
+    const {expenseId} = req.params;
+    const expense = await Expense.findById(expenseId);
+    if(!expense)
+    {
+      res.status(200).json({message : "Expense Not found"})
+    }
+    await Expense.findByIdAndDelete(expenseId);
+    res.status(200).json({message : "Expense Deleted"})
+  }catch(err)
+  {
+    console.log(err);
+    res.status(200).json({message : "Internal Server Error"})
+  }
+}
