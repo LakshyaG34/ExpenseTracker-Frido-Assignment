@@ -3,6 +3,8 @@
 An advanced **Expense Tracker Web Application** built using the **MERN Stack (MongoDB, Express.js, React.js, Node.js)**.  
 This app helps users **create groups**, **add and split expenses**, and **track balances** among members seamlessly — perfect for trips, shared living, or team budgets.
 
+Live Link :- https://expensetracker-frido-assignment.onrender.com/
+Please Ignore the Vercel Link!
 ---
 
 ## 🚀 Features
