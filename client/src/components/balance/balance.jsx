@@ -12,7 +12,7 @@ const Balance = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gray-50 py-8 px-4">
+    <div className="min-h-screen flex flex-col items-center bg-gray-50 py-8 px-4 bg-gradient-to-br from-blue-50 to-blue-100">
       <h2 className="text-2xl font-semibold mb-6 text-gray-800">
         Group-wise Balances
       </h2>

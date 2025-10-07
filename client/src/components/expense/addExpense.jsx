@@ -61,7 +61,7 @@ const AddExpense = () => {
   };
 
   return (
-    <div className="flex justify-center min-h-screen items-center">
+    <div className="flex justify-center min-h-screen items-center bg-gradient-to-br from-blue-50 to-blue-100">
       <form className="flex flex-col gap-2 p-4 border rounded" onSubmit={handleExpense}>
         <input
           className="border p-1 rounded"

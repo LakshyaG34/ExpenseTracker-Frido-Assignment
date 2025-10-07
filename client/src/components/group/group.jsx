@@ -5,7 +5,7 @@ const Groups = () => {
   const groups = useSelector((state) => state.group);
 
   return (
-    <div>
+    <div className="bg-gradient-to-br from-blue-50 to-blue-100">
       {groups.length > 0
         ? groups.map((group) => (
             <GroupCard

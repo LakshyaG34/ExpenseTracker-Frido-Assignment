@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useAuthContext } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -7,6 +8,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const { setUser } = useAuthContext();
+  const navigate = useNavigate();
 
   const handleFetch = async (e) => {
     e.preventDefault();
@@ -33,7 +35,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-red-50 to-red-100">
       <form
         onSubmit={handleFetch}
         className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-sm border border-gray-100"
@@ -85,9 +87,9 @@ const Signup = () => {
 
         <p className="text-sm text-center text-gray-600 mt-4">
           Already have an account?{" "}
-          <a href="/login" className="text-blue-600 hover:underline">
+          <button onClick={()=>navigate("/login")} className="text-blue-600 hover:underline">
             Log in
-          </a>
+          </button>
         </p>
       </form>
     </div>

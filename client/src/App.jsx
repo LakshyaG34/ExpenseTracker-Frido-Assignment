@@ -14,6 +14,7 @@ import { setExpense } from "./redux/expenseSlice";
 import { setBalance } from "./redux/balanceSlice";
 import Signup from "./pages/signup";
 import Balance from "./components/balance/balance";
+import Navbar from "./components/navbar";
 
 function App() {
   const { user, loading } = useAuthContext();
@@ -54,6 +55,8 @@ function App() {
   }, [dispatch]);
 
   return (
+    <div>
+      <Navbar/>
     <Routes>
       <Route path="/login" element={<Login/>}/>
       <Route path="/signup" element={<Signup/>}/>
@@ -75,6 +78,7 @@ function App() {
         /> */}
       <Route path="/expense/add" element={user?<AddExpense/>:<Login/>}/>
     </Routes>
+    </div>
   );
 }
 

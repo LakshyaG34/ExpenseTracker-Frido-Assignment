@@ -44,7 +44,7 @@ const AddGroup = () => {
 
   return (
     <form
-      className="flex flex-col justify-center items-center min-h-screen gap-4"
+      className="flex flex-col justify-center items-center min-h-screen gap-4 bg-gradient-to-br from-blue-50 to-blue-100"
       onSubmit={handleGroups}
     >
       <input
