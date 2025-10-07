@@ -45,7 +45,7 @@ export const login = async (req, res) => {
 
     const user = await Auth.findOne({ email });
     if (!user) {
-      return res.status(409).json({ message: "User Does not exists" });
+      return res.status(404).json({ message: "User Does not exists" });
     }
 
     const correctPassword = await bcrypt.compare(password, user.password)
@@ -54,7 +54,7 @@ export const login = async (req, res) => {
     }
     generateTokenAndSetCookie(user.id, res);
 
-    res.status(201).json({ user, message: "Login Successfully" });
+    res.status(200).json({ user, message: "Login Successfully" });
     console.log(user);
   } catch (err) {
     console.error(err);

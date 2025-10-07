@@ -42,7 +42,7 @@ export const getExpense = async(req, res) =>{
         const expense = await Expense.findOne({category}).populate("paidBy", "name").populate("groupId", "name");
         if(!expense)
         {
-            res.status(404).json({err : "Expense does not exist"});
+            return res.status(404).json({err : "Expense does not exist"});
         }
         res.status(200).json(expense);
     }catch(err)
@@ -57,7 +57,7 @@ export const getExpenses = async(req, res) =>{
         const expenses = await Expense.find().populate("paidBy", "name").populate("groupId", "name").populate("splitDetails.userId", "name");
         if(!expenses)
         {
-            res.status(404).json({err : "Expense does not exist"});
+            return res.status(404).json({err : "Expense does not exist"});
         }
         res.status(200).json(expenses);
     }catch(err)
@@ -73,7 +73,7 @@ export const deleteExpense = async(req, res)=>{
     const expense = await Expense.findById(expenseId);
     if(!expense)
     {
-      res.status(200).json({message : "Expense Not found"})
+      return res.status(404).json({message : "Expense Not found"})
     }
     await Expense.findByIdAndDelete(expenseId);
     res.status(200).json({message : "Expense Deleted"})
@@ -91,7 +91,7 @@ export const updateExpense = async(req, res) =>{
     const expense = await Expense.findById(expenseId);
     if(!expense)
     {
-      res.status(400).json({err : "Expense does not exist"})
+      return res.status(404).json({err : "Expense does not exist"})
     }
     const updatedExpense = await Expense.findByIdAndUpdate(expenseId,
       { $set: updates },

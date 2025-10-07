@@ -5,7 +5,7 @@ export const createGroup = async(req, res) =>{
         const {name, membersIdArr, createdByUserId} = req.body;
         if(!name || !membersIdArr || !Array.isArray(membersIdArr) || membersIdArr.length == 0 || !createdByUserId)
         {
-            res.status(404).json({err : "Missing Fields"})
+            return res.status(404).json({err : "Missing Fields"})
         }
         const group = await Group.create({
             name,
@@ -28,7 +28,7 @@ export const getGroup = async(req, res) =>{
         .populate("createdBy", "name email");
         if(!groups)
         {
-            res.status(404).json({err : "Group does not exist"})
+            return res.status(404).json({err : "Group does not exist"})
         }
         res.status(200).json(groups);
     }catch(err)
@@ -43,7 +43,7 @@ export const getGroupById = async(req, res) =>{
         const group = await Group.findById(groupId);
         if(!group)
         {
-            return res.status(400).json({err : "Group does not exist"})
+            return res.status(404).json({err : "Group does not exist"})
         }
         res.status(200).json(group);
     }catch(err)
@@ -59,7 +59,7 @@ export const deleteGroup = async(req, res) =>{
         const group = await Group.findById(groupId);
         if(!group)
         {
-            res.status(404).json({err : "Group does not exist"})
+            return res.status(404).json({err : "Group does not exist"})
         }
         await Group.findByIdAndDelete(groupId);
         res.status(200).json({message : "Group Deleted!!!"})
@@ -77,7 +77,7 @@ export const updateGroup = async(req, res) =>{
     const group = await Group.findById(groupId);
     if(!group)
     {
-      res.status(400).json({err : "Expense does not exist"})
+      return res.status(404).json({err : "Expense does not exist"})
     }
     const updatedGroup = await Group.findByIdAndUpdate(groupId,
       { $set: updates },
