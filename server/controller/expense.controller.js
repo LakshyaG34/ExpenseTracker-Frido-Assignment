@@ -83,3 +83,24 @@ export const deleteExpense = async(req, res)=>{
     res.status(200).json({message : "Internal Server Error"})
   }
 }
+
+export const updateExpense = async(req, res) =>{
+  try{
+    const {expenseId} = req.params;
+    const updates = req.body;
+    const expense = await Expense.findById(expenseId);
+    if(!expense)
+    {
+      res.status(400).json({err : "Expense does not exist"})
+    }
+    const updatedExpense = await Expense.findByIdAndUpdate(expenseId,
+      { $set: updates },
+      { new: true, runValidators: true }
+    );
+    res.status(200).json({message : "Expense Updated Successfully", expense:updatedExpense})
+  }catch(err)
+  {
+    console.log(err);
+    res.status(500).json({Error : "Internal Server error"})
+  }
+}

@@ -31,7 +31,7 @@ const GroupCard = ({ name, members, createdBy, id }) => {
       <div className="mt-3">
         <h4 className="text-sm font-medium text-gray-700 mb-1">Members:</h4>
         {members && members.length > 0 ? (
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 items-center">
             {members.map((member) => (
               <span
                 key={member._id}

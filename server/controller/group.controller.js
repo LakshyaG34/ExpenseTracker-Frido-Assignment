@@ -53,3 +53,24 @@ export const deleteGroup = async(req, res) =>{
         res.status(500).json({message : "Internal Server Error"})
     }
 }
+
+export const updateGroup = async(req, res) =>{
+  try{
+    const {groupId} = req.params;
+    const updates = req.body;
+    const group = await Group.findById(groupId);
+    if(!group)
+    {
+      res.status(400).json({err : "Expense does not exist"})
+    }
+    const updatedGroup = await Group.findByIdAndUpdate(groupId,
+      { $set: updates },
+      { new: true, runValidators: true }
+    );
+    res.status(200).json({message : "Expense Updated Successfully", expense:updatedGroup})
+  }catch(err)
+  {
+    console.log(err);
+    res.status(500).json({Error : "Internal Server error"})
+  }
+}
