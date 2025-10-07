@@ -36,3 +36,20 @@ export const getGroup = async(req, res) =>{
         console.log(err);
     }
 }
+
+export const deleteGroup = async(req, res) =>{
+    try{
+        const {groupId} = req.params;
+        const group = await Group.findById(groupId);
+        if(!group)
+        {
+            res.status(404).json({err : "Group does not exist"})
+        }
+        await Group.findByIdAndDelete(groupId);
+        res.status(200).json({message : "Group Deleted!!!"})
+    }catch(err)
+    {
+        console.log(err);
+        res.status(500).json({message : "Internal Server Error"})
+    }
+}

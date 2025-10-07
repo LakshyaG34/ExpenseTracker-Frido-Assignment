@@ -1,6 +1,6 @@
 const GroupCard = ({ name, members, createdBy }) => {
   return (
-    <div className="bg-white shadow-md hover:shadow-xl transition-all duration-300 rounded-2xl p-6 border border-gray-100">
+    <div className="w-full max-w-lg mx-auto bg-white shadow-md hover:shadow-xl transition-all duration-300 rounded-2xl p-6 border border-gray-100">
       <div className="flex justify-between items-center mb-3">
         <h3 className="text-xl font-semibold text-gray-800">{name}</h3>
         <span className="text-xs px-3 py-1 rounded-full bg-blue-100 text-blue-700">
