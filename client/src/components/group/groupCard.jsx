@@ -7,9 +7,8 @@ const GroupCard = ({ name, members, createdBy }) => {
           Created by {createdBy || "Unknown"}
         </span>
       </div>
-
       <div className="mt-3">
-        <h4 className="text-sm font-medium text-gray-700 mb-1">👥 Members:</h4>
+        <h4 className="text-sm font-medium text-gray-700 mb-1">Members:</h4>
         {members && members.length > 0 ? (
           <div className="flex flex-wrap gap-2">
             {members.map((member) => (

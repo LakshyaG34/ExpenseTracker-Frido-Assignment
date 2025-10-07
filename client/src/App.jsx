@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { setGroup } from "./redux/groupSlice";
 import { setUser } from "./redux/userSlice";
 import { setExpense } from "./redux/expenseSlice";
+import Signup from "./pages/signup";
 
 function App() {
   const { user, loading } = useAuthContext();
@@ -47,6 +48,8 @@ function App() {
 
   return (
     <Routes>
+      <Route path="/login" element={<Login/>}/>
+      <Route path="/signup" element={<Signup/>}/>
       <Route path="/" element={user ? <Expense /> : <Login />} />
       <Route path="/groups/add" element={user ? <AddGroup /> : <Login />} />
       <Route path="/groups" element={user ? <Groups /> : <Login />} />
