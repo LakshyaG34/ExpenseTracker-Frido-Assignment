@@ -66,16 +66,16 @@ const AddExpense = () => {
   };
 
   return (
-    <div className="flex justify-center min-h-screen items-center bg-gradient-to-br from-blue-50 to-blue-100">
-      <form className="flex flex-col gap-2 p-4 border rounded" onSubmit={handleExpense}>
+    <div className="flex px-4 py-10 justify-center min-h-screen items-center bg-gradient-to-br from-blue-50 to-blue-100">
+      <form className="w-full max-w-lg bg-white rounded-2xl shadow-xl p-6 space-y-5 border border-gray-100" onSubmit={handleExpense}>
         <input
-          className="border p-1 rounded"
+          className="w-full border border-gray-300 focus:border-blue-400 focus:ring-blue-200 p-2 rounded-lg outline-none"
           placeholder="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
         <input
-          className="border p-1 rounded"
+          className="w-full border border-gray-300 focus:border-blue-400 focus:ring-blue-200 p-2 rounded-lg outline-none"
           placeholder="amount"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
@@ -84,13 +84,13 @@ const AddExpense = () => {
         <div className="relative">
           <button
             type="button"
-            className="border p-1 rounded w-full text-left"
+            className="w-full border border-gray-300 p-2 rounded-lg text-left hover:bg-gray-50"
             onClick={() => setIsOpen1((prev) => !prev)}
           >
             {paidBy ? `Paid By: ${user.find((u) => u._id === paidBy)?.name}` : "Select Paid By"}
           </button>
           {isOpen1 && (
-            <ul className="absolute z-10 bg-white border rounded mt-1 w-full max-h-32 overflow-auto">
+            <ul className="absolute z-10 bg-white border border-gray-200 rounded-lg mt-1 w-full max-h-32 overflow-auto shadow-md">
               {user.length === 0
                 ? <li className="p-2">Loading users...</li>
                 : user.map((i) => (
@@ -140,7 +140,7 @@ const AddExpense = () => {
         </div>
 
         <input
-          className="border p-1 rounded"
+          className="w-full border border-gray-300 focus:border-blue-400 focus:ring-blue-200 p-2 rounded-lg outline-none"
           placeholder="Enter Category"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
@@ -151,7 +151,7 @@ const AddExpense = () => {
           <select
             value={splitType}
             onChange={(e) => setSplitType(e.target.value)}
-            className="border rounded px-2 py-1"
+            className="w-full border border-gray-300 focus:border-blue-400 focus:ring-blue-200 p-2 rounded-lg outline-none"
           >
             <option value="equal">Equal</option>
             <option value="unequal">Unequal</option>
@@ -177,7 +177,6 @@ const AddExpense = () => {
             })}
           </div>
         )}
-
         <div>
           <label className="mr-2 font-semibold">Date:</label>
           <input
@@ -190,7 +189,7 @@ const AddExpense = () => {
 
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded mt-2 cursor-pointer"
+          className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium px-4 py-2 rounded-lg shadow transition-all duration-200"
         >
           Add
         </button>

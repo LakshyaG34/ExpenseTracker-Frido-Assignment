@@ -78,18 +78,6 @@ function App() {
           path="/expense/add"
           element={user ? <AddExpense /> : <Login />}
         />
-        {/* <Route
-        path="/expense"
-        element={user ? (
-            <>
-              <SearchBar />
-              <Expense />
-            </>
-          ) : (
-            <Login />
-          )
-        }
-        /> */}
       </Routes>
     </div>
   );

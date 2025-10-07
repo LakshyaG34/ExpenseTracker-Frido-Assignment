@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {addGroup} from "../../redux/groupSlice.js"
+import { addGroup } from "../../redux/groupSlice.js";
 
 const AddGroup = () => {
   const user = useSelector((state) => state.user);
@@ -48,84 +48,90 @@ const AddGroup = () => {
 
   return (
     <form
-      className="flex flex-col justify-center items-center min-h-screen gap-4 bg-gradient-to-br from-blue-50 to-blue-100"
+      className="flex flex-col justify-center items-center min-h-screen gap-5 bg-gradient-to-br from-blue-50 to-blue-100 px-4"
       onSubmit={handleGroups}
     >
-      <input
-        placeholder="Group Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        className="border p-2 rounded w-64"
-      />
+      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md border border-gray-100">
+        <h2 className="text-2xl font-semibold text-center text-blue-700 mb-6">
+          Create New Group
+        </h2>
 
-      <div className="relative w-64">
+        <input
+          placeholder="Group Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="border border-gray-300 p-2 rounded-lg w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+        />
+        <div className="relative w-full mb-4">
+          <button
+            type="button"
+            className="border border-gray-300 p-2 rounded-lg w-full text-left bg-white hover:bg-gray-50 transition"
+            onClick={() => setIsCreatorOpen((prev) => !prev)}
+          >
+            {selectedCreatorName || "Choose Creator"}
+          </button>
+          {isCreatorOpen && (
+            <ul className="absolute z-10 bg-white border border-gray-300 rounded-lg mt-1 w-full max-h-40 overflow-auto shadow-md">
+              {user.length === 0 ? (
+                <li className="p-2 text-gray-500">Loading users...</li>
+              ) : (
+                user.map((u) => (
+                  <li
+                    key={u._id}
+                    className="p-2 hover:bg-blue-100 cursor-pointer transition"
+                    onClick={() => {
+                      setSelectedCreator(u._id);
+                      setSelectedCreatorName(u.name);
+                      setIsCreatorOpen(false);
+                    }}
+                  >
+                    {u.name}
+                  </li>
+                ))
+              )}
+            </ul>
+          )}
+        </div>
+        <div className="relative w-full mb-4">
+          <button
+            type="button"
+            className="border border-gray-300 p-2 rounded-lg w-full text-left bg-white hover:bg-gray-50 transition"
+            onClick={() => setIsMembersOpen((prev) => !prev)}
+          >
+            {selectedMembers.length > 0
+              ? `Members: ${selectedMembers.length} selected`
+              : "Select Members"}
+          </button>
+          {isMembersOpen && (
+            <ul className="absolute z-10 bg-white border border-gray-300 rounded-lg mt-1 w-full max-h-40 overflow-auto shadow-md">
+              {user.length === 0 ? (
+                <li className="p-2 text-gray-500">Loading users...</li>
+              ) : (
+                user.map((u) => (
+                  <li
+                    key={u._id}
+                    className={`p-2 cursor-pointer transition ${
+                      selectedMembers.includes(u._id)
+                        ? "bg-blue-100 font-medium"
+                        : "hover:bg-gray-100"
+                    }`}
+                    onClick={() => toggleMemberSelection(u._id)}
+                  >
+                    {u.name}
+                  </li>
+                ))
+              )}
+            </ul>
+          )}
+        </div>
+
         <button
-          type="button"
-          className="border p-2 rounded w-full text-left"
-          onClick={() => setIsCreatorOpen((prev) => !prev)}
+          type="submit"
+          className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-medium transition transform hover:scale-[1.02]"
         >
-          {selectedCreatorName || "Choose Creator"}
+          Create Group
         </button>
-        {isCreatorOpen && (
-          <ul className="absolute z-10 bg-white border rounded mt-1 w-full max-h-32 overflow-auto">
-            {user.length === 0 ? (
-              <li className="p-2">Loading users...</li>
-            ) : (
-              user.map((u) => (
-                <li
-                  key={u._id}
-                  className="p-2 hover:bg-gray-200 cursor-pointer"
-                  onClick={() => {
-                    setSelectedCreator(u._id);
-                    setSelectedCreatorName(u.name);
-                    setIsCreatorOpen(false);
-                  }}
-                >
-                  {u.name}
-                </li>
-              ))
-            )}
-          </ul>
-        )}
       </div>
-
-      <div className="relative w-64">
-        <button
-          type="button"
-          className="border p-2 rounded w-full text-left"
-          onClick={() => setIsMembersOpen((prev) => !prev)}
-        >
-          {selectedMembers.length > 0
-            ? `Members: ${selectedMembers.length} selected`
-            : "Select Members"}
-        </button>
-        {isMembersOpen && (
-          <ul className="absolute z-10 bg-white border rounded mt-1 w-full max-h-40 overflow-auto">
-            {user.length === 0 ? (
-              <li className="p-2">Loading users...</li>
-            ) : (
-              user.map((u) => (
-                <li
-                  key={u._id}
-                  className={`p-2 hover:bg-gray-200 cursor-pointer ${
-                    selectedMembers.includes(u._id) ? "bg-gray-100" : ""
-                  }`}
-                  onClick={() => toggleMemberSelection(u._id)}
-                >
-                  {u.name}
-                </li>
-              ))
-            )}
-          </ul>
-        )}
-      </div>
-
-      <button
-        type="submit"
-        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
-      >
-        Create Group
-      </button>
     </form>
   );
 };
