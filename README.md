@@ -36,36 +36,40 @@ Follow these steps to run the project locally 👇
 ```bash
 git clone https://github.com/your-username/expense-tracker-mern.git
 cd expense-tracker-mern
-
-###
 2️⃣ Backend Setup
-
-```bash
+bash
+Copy code
 cd backend
 npm install
-
 Create a .env file inside the backend folder and add:
 
+env
+Copy code
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
 PORT=5000
-
 Then start the backend server:
 
+bash
+Copy code
 npm run dev
+Backend should now be running on 👉 http://localhost:5000
 
-###
 3️⃣ Frontend Setup
+bash
+Copy code
 cd frontend
 npm install
-
-
 Start the frontend:
 
+bash
+Copy code
 npm start
+Frontend runs on 👉 http://localhost:3000
 
-###
 4️⃣ Folder Structure
+pgsql
+Copy code
 expense-tracker-mern/
 │
 ├── backend/
@@ -84,7 +88,6 @@ expense-tracker-mern/
 │   └── package.json
 │
 └── README.md
-
 🧩 API Endpoints Overview
 Method	Endpoint	Description
 POST	/api/expenses	Add a new expense
@@ -96,17 +99,14 @@ GET	/api/balances/group/:groupId	Calculate balances within a group
 
 📸 Screenshots
 🏠 Dashboard
-
 Add screenshot here
 
 ➕ Add Expense Page
-
 Add screenshot here
 
 👥 Group Creation
-
 Add screenshot here
 
 💰 Balance Summary
-
 Add screenshot here
+
