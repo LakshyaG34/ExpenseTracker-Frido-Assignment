@@ -34,7 +34,7 @@ Follow these steps to run the project locally 👇
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/expense-tracker-mern.git
+git clone https://github.com/LakshyaG34/ExpenseTracker-Frido-Assignment.git
 cd expense-tracker-mern
 ```
 
