@@ -37,9 +37,10 @@ Follow these steps to run the project locally 👇
 git clone https://github.com/your-username/expense-tracker-mern.git
 cd expense-tracker-mern
 
-
+###
 2️⃣ Backend Setup
 
+```bash
 cd backend
 npm install
 
@@ -53,6 +54,7 @@ Then start the backend server:
 
 npm run dev
 
+###
 3️⃣ Frontend Setup
 cd frontend
 npm install
@@ -62,7 +64,7 @@ Start the frontend:
 
 npm start
 
-
+###
 4️⃣ Folder Structure
 expense-tracker-mern/
 │
