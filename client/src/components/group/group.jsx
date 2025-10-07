@@ -1,4 +1,4 @@
-import GroupCard from "../cards/groupCard";
+import GroupCard from "./groupCard";
 import { useSelector } from "react-redux";
 
 const Groups = () => {

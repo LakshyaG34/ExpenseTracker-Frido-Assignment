@@ -50,3 +50,18 @@ export const getExpense = async(req, res) =>{
         res.status(500).json({Error : "Internal Server Error"})
     }
 }
+export const getExpenses = async(req, res) =>{
+    try{
+        // const {category} = req.query;
+        const expenses = await Expense.find().populate("paidBy", "name").populate("groupId", "name").populate("splitDetails.userId", "name");
+        if(!expenses)
+        {
+            res.status(404).json({err : "Expense does not exist"});
+        }
+        res.status(200).json(expenses);
+    }catch(err)
+    {
+        console.log(err);
+        res.status(500).json({Error : "Internal Server Error"})
+    }
+}

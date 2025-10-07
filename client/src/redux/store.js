@@ -2,11 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import categoryReducer from "./categorySlice"
 import userReducer from "./userSlice"
 import groupReducer from "./groupSlice"
+import expenseReducer from "./expenseSlice"
 
 export const store = configureStore({
     reducer : {
         category : categoryReducer,
         user : userReducer,
-        group : groupReducer
+        group : groupReducer,
+        expense : expenseReducer
     }
 })

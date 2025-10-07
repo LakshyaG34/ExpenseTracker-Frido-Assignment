@@ -10,6 +10,7 @@ import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setGroup } from "./redux/groupSlice";
 import { setUser } from "./redux/userSlice";
+import { setExpense } from "./redux/expenseSlice";
 
 function App() {
   const { user, loading } = useAuthContext();
@@ -32,6 +33,11 @@ function App() {
         });
         const users = await responseUsers.json();
         dispatch(setUser(users));
+        const responseExpense = await fetch("http://localhost:5000/api/expenses/all", {
+          credentials: "include"
+        });
+        const expense = await responseExpense.json();
+        dispatch(setExpense(expense));
       } catch (err) {
         console.log(err);
       }
