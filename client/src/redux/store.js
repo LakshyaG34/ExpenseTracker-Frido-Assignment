@@ -3,12 +3,14 @@ import categoryReducer from "./categorySlice"
 import userReducer from "./userSlice"
 import groupReducer from "./groupSlice"
 import expenseReducer from "./expenseSlice"
+import balanceReducer from "./balanceSlice";
 
 export const store = configureStore({
     reducer : {
         category : categoryReducer,
         user : userReducer,
         group : groupReducer,
-        expense : expenseReducer
+        expense : expenseReducer,
+        balance : balanceReducer,
     }
 })

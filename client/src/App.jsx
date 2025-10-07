@@ -3,7 +3,7 @@ import AddExpense from "./components/expense/addExpense";
 import Expense from "./components/expense/expense";
 import AddGroup from "./components/group/addGroup";
 import Groups from "./components/group/group";
-import SearchBar from "./components/searchBar";
+// import SearchBar from "./components/searchBar";
 import { useAuthContext } from "./context/authContext";
 import Login from "./pages/signin";
 import { Routes, Route } from "react-router-dom";
@@ -11,7 +11,9 @@ import { useDispatch } from "react-redux";
 import { setGroup } from "./redux/groupSlice";
 import { setUser } from "./redux/userSlice";
 import { setExpense } from "./redux/expenseSlice";
+import { setBalance } from "./redux/balanceSlice";
 import Signup from "./pages/signup";
+import Balance from "./components/balance/balance";
 
 function App() {
   const { user, loading } = useAuthContext();
@@ -39,6 +41,11 @@ function App() {
         });
         const expense = await responseExpense.json();
         dispatch(setExpense(expense));
+        const responseBalances = await fetch("http://localhost:5000/api/balances/all", {
+          credentials: "include"
+        });
+        const balance = await responseBalances.json();
+        dispatch(setBalance(balance.data));
       } catch (err) {
         console.log(err);
       }
@@ -53,7 +60,8 @@ function App() {
       <Route path="/" element={user ? <Expense /> : <Login />} />
       <Route path="/groups/add" element={user ? <AddGroup /> : <Login />} />
       <Route path="/groups" element={user ? <Groups /> : <Login />} />
-      <Route
+      <Route path="/balance" element={user ? <Balance /> : <Login />} />
+      {/* <Route
         path="/expense"
         element={user ? (
             <>
@@ -64,7 +72,7 @@ function App() {
             <Login />
           )
         }
-        />
+        /> */}
       <Route path="/expense/add" element={user?<AddExpense/>:<Login/>}/>
     </Routes>
   );
