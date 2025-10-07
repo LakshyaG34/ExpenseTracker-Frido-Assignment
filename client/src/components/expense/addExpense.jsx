@@ -63,7 +63,7 @@ const AddExpense = () => {
   const handleExpense = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/expenses", {
+      const response = await fetch("/api/expenses", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         credentials: "include",
