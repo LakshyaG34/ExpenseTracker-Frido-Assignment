@@ -1,5 +1,5 @@
 import Expense from "../models/expense.model.js";
-
+import mongoose from "mongoose";
 
 export const createExpense = async (req, res) => {
   try {
@@ -104,3 +104,36 @@ export const updateExpense = async(req, res) =>{
     res.status(500).json({Error : "Internal Server error"})
   }
 }
+
+export const getGroupTotalExpense = async (req, res) => {
+  try {
+    const { groupId } = req.params;
+
+     const objectGroupId = new mongoose.Types.ObjectId(groupId);
+
+    const result = await Expense.aggregate([
+      { $match: { groupId: objectGroupId } },
+      {
+        $group: {
+          _id: "$groupId",
+          totalAmount: { $sum: "$amount" },
+          count: { $sum: 1 }
+        }
+      }
+    ]);
+
+    if (result.length === 0) {
+      return res.status(404).json({ message: "No expenses found for this group" });
+    }
+
+    res.status(200).json({
+      groupId: result[0]._id,
+      totalAmount: result[0].totalAmount,
+      totalExpenses: result[0].count,
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error fetching total expense" });
+  }
+};
