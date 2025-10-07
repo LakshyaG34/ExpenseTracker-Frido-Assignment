@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {addGroup} from "../../redux/groupSlice.js"
 
 const AddGroup = () => {
   const user = useSelector((state) => state.user);
@@ -9,6 +10,7 @@ const AddGroup = () => {
   const [isMembersOpen, setIsMembersOpen] = useState(false);
   const [selectedMembers, setSelectedMembers] = useState([]);
   const [name, setName] = useState("");
+  const dispatch = useDispatch();
 
   const toggleMemberSelection = (id) => {
     setSelectedMembers((prev) =>
@@ -36,6 +38,8 @@ const AddGroup = () => {
       });
 
       if (!response.ok) throw new Error("Cannot create group");
+      const data = await response.json();
+      dispatch(addGroup(data));
       alert("Group Created");
     } catch (err) {
       console.log(err);

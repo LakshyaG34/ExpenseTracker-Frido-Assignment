@@ -4,9 +4,15 @@
         name: "group",
         initialState : [],
         reducers: {
-            setGroup: (state, action) => action.payload
+            setGroup: (state, action) => action.payload,
+            addGroup: (state, action) => {
+            state.push(action.payload);
+            },
+            removeGroup: (state, action) => {
+                return state.filter(grp => grp._id !== action.payload)
+            }
         }
     })
 
-    export const {setGroup} = groupSlice.actions
+    export const {setGroup, addGroup, removeGroup} = groupSlice.actions
     export default groupSlice.reducer;

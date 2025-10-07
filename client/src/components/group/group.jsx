@@ -13,6 +13,7 @@ const Groups = () => {
               name={group.name}
               createdBy={group.createdBy.name}
               members={group.members}
+              id={group._id}
             />
           ))
         : "No groups to fetch"}

@@ -1,4 +1,25 @@
-const GroupCard = ({ name, members, createdBy }) => {
+import { useDispatch } from "react-redux";
+import { removeGroup } from "../../redux/groupSlice";
+
+const GroupCard = ({ name, members, createdBy, id }) => {
+  const dispatch = useDispatch();
+  const handleDelete = async (groupId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/groups/${groupId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Error Deleting Group");
+      }
+      dispatch(removeGroup(groupId));
+      alert("Group Deleted");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="w-full max-w-lg mx-auto bg-white shadow-md hover:shadow-xl transition-all duration-300 rounded-2xl p-6 border border-gray-100">
       <div className="flex justify-between items-center mb-3">
@@ -19,6 +40,12 @@ const GroupCard = ({ name, members, createdBy }) => {
                 {member.name}
               </span>
             ))}
+            <button
+              onClick={() => handleDelete(id)}
+              className="mt-2 border border-red-400 text-red-400 rounded-2xl px-2 py-1 cursor-pointer hover:bg-red-100 transition-all duration-200"
+            >
+              Delete
+            </button>
           </div>
         ) : (
           <p className="text-sm text-gray-500 italic">No members yet</p>
