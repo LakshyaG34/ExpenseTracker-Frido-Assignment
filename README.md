@@ -125,17 +125,12 @@ PUT     /api/groups/:groupId            updateGroup
 
 📸 Screenshots
 🏠 Dashboard
-![alt text](<Screenshot (3398).png>)
 
 ➕ Add Expense Page
-![alt text](<Screenshot (3399).png>)
 
 👥 Group
-![alt text](<Screenshot (3401).png>)
 
 👥 Group Creation
-![alt text](<Screenshot (3402).png>)
 
 💰 Balance Summary
-![alt text](<Screenshot (3400).png>)
 
