@@ -34,14 +34,12 @@ Follow these steps to run the project locally 👇
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/expense-tracker-mern.git
-cd expense-tracker-mern
+git clone https://github.com/LakshyaG34/ExpenseTracker-Frido-Assignment.git
 ```
 
 ### 2️⃣ Backend Setup
 ```bash
-bash
-cd backend
+cd server
 npm install
 Create a .env file inside the backend folder and add:
 
@@ -59,7 +57,7 @@ Backend should now be running on 👉 http://localhost:5000
 
 ### 3️⃣ Frontend Setup
 ```bash
-cd frontend
+cd client
 npm install
 Start the frontend:
 
