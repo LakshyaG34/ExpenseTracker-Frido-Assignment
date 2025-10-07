@@ -41,20 +41,17 @@ cd expense-tracker-mern
 ### 2️⃣ Backend Setup
 ```bash
 bash
-Copy code
 cd backend
 npm install
 Create a .env file inside the backend folder and add:
 
 env.example
-Copy code
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
 PORT=5000
 NODE_ENV
 
 
-Copy code
 npm run dev
 Backend should now be running on 👉 http://localhost:5000
 ```
@@ -62,21 +59,17 @@ Backend should now be running on 👉 http://localhost:5000
 
 ### 3️⃣ Frontend Setup
 ```bash
-Copy code
 cd frontend
 npm install
 Start the frontend:
 
 
-Copy code
-npm start
+npm run dev
 ```
-Frontend runs on 👉 http://localhost:3000
+Frontend runs on 👉 http://localhost:5173
 
 4️⃣ Folder Structure
 ```bash
-pgsql
-Copy code
 expense-tracker-mern/
 │
 ├── server/
