@@ -51,6 +51,7 @@ Copy code
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
 PORT=5000
+NODE_ENV
 
 
 Copy code
@@ -125,12 +126,25 @@ PUT     /api/groups/:groupId            updateGroup
 
 📸 Screenshots
 🏠 Dashboard
+<img width="1920" height="1080" alt="Screenshot (3398)" src="https://github.com/user-attachments/assets/e43d6455-70c9-4c35-b930-a23af2c0aa6d" />
 
 ➕ Add Expense Page
+<img width="1920" height="1080" alt="Screenshot (3399)" src="https://github.com/user-attachments/assets/f222fb44-5ba0-4a3c-8c50-0befee7d8edc" />
 
 👥 Group
+<img width="1920" height="1080" alt="Screenshot (3401)" src="https://github.com/user-attachments/assets/bc8d24be-a2ac-4475-b0cb-eb687b5382ac" />
 
 👥 Group Creation
+<img width="1920" height="1080" alt="Screenshot (3402)" src="https://github.com/user-attachments/assets/5d33fd85-7529-4a5b-a74a-dc4daa1198d3" />
 
 💰 Balance Summary
+<img width="1920" height="1080" alt="Screenshot (3400)" src="https://github.com/user-attachments/assets/8c72d572-6d2d-401e-a828-9a352d9f8510" />
+
+👥 Login
+<img width="1920" height="1080" alt="Screenshot (3404)" src="https://github.com/user-attachments/assets/4378942a-6701-47fe-8012-dcdfcda8b894" />
+
+👥 Signup
+<img width="1920" height="1080" alt="Screenshot (3405)" src="https://github.com/user-attachments/assets/05e1e029-367b-4d11-9a4e-d5a16d0672f6" />
+
+
 
