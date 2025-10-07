@@ -1,5 +1,6 @@
 import Expense from "../models/expense.model.js";
 
+
 export const createExpense = async (req, res) => {
   try {
     const {description, amount, paidBy, groupId, category, splitType, splitDetails, date} = req.body;
@@ -65,3 +66,4 @@ export const getExpenses = async(req, res) =>{
         res.status(500).json({Error : "Internal Server Error"})
     }
 }
+

@@ -4,6 +4,7 @@ import { dbConnect } from "./lib/db.js";
 import authRouter from "./routes/auth.route.js"
 import expenseRouter from "./routes/expense.route.js"
 import groupRouter from "./routes/group.route.js"
+import balanceRouter from "./routes/balance.route.js"
 import cors from "cors"
 import cookieParser from "cookie-parser";
 
@@ -23,6 +24,7 @@ app.use(express.json());
 app.use("/api/auth", authRouter)
 app.use("/api", expenseRouter)
 app.use("/api", groupRouter)
+app.use("/api", balanceRouter)
 
 app.listen(PORT, ()=>{
     dbConnect();
