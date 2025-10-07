@@ -69,24 +69,24 @@ const Navbar = () => {
                 </button>
               </>
             ) : (
-              <>
+              <div className="flex gap-2">
                 <button
-                  onClick={handleLogout}
+                  onClick={()=>navigate("/login")}
                   className="border border-red-400 text-red-400 rounded-2xl px-2 py-1 cursor-pointer hover:bg-red-100 transition-all duration-200"
                 >
-                  Logout
+                  Login
                 </button>
                 <button
-                  onClick={handleLogout}
+                  onClick={()=>navigate("/signup")}
                   className="border border-red-400 text-red-400 rounded-2xl px-2 py-1 cursor-pointer hover:bg-red-100 transition-all duration-200"
                 >
-                  Logout
+                  SignUp
                 </button>
-              </>
+              </div>
             )}
           </div>
           <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)}> = </button>
+            <button onClick={() => setIsOpen(!isOpen)} className="text-[25px]"> = </button>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {addExpense} from "../../redux/expenseSlice.js"
+import { addExpense } from "../../redux/expenseSlice.js";
 
 const AddExpense = () => {
   const user = useSelector((state) => state.user);
@@ -22,18 +22,41 @@ const AddExpense = () => {
     if (selectedGroup) {
       const groupObj = group.find((g) => g._id === selectedGroup);
       if (groupObj) {
-        const details = groupObj.members.map((member) => ({
-          userId: member._id,
-          amount: splitType === "equal" ? (amount ? Number(amount) / groupObj.members.length : 0) : 0,
-        }));
+        let details = [];
+        if (splitType === "equal") {
+          details = groupObj.members.map((member) => ({
+            userId: member._id,
+            amount: amount ? Number(amount) / groupObj.members.length : 0,
+          }));
+        } else if (splitType === "percentage") {
+          details = groupObj.members.map((member) => ({
+            userId: member._id,
+            percentage: 0,
+            amount: 0,
+          }));
+        } else {
+          details = groupObj.members.map((member) => ({
+            userId: member._id,
+            amount: 0,
+          }));
+        }
         setSplitDetails(details);
       }
     }
   }, [selectedGroup, amount, splitType, group]);
-
   const handleSplitChange = (userId, value) => {
+    if (splitType === "percentage") return;
     setSplitDetails((prev) =>
       prev.map((s) => (s.userId === userId ? { ...s, amount: Number(value) } : s))
+    );
+  };
+  const handlePercentageChange = (userId, percentValue) => {
+    setSplitDetails((prev) =>
+      prev.map((s) =>
+        s.userId === userId
+          ? { ...s, percentage: Number(percentValue), amount: (Number(amount) * Number(percentValue)) / 100 }
+          : s
+      )
     );
   };
 
@@ -52,13 +75,13 @@ const AddExpense = () => {
           date,
           paidBy,
           groupId: selectedGroup,
-          splitDetails
+          splitDetails,
         }),
       });
       if (!response.ok) throw new Error("Cannot Send Expense");
       const data = await response.json();
-      dispatch(addExpense(data))
-      alert("Expense Added")
+      dispatch(addExpense(data));
+      alert("Expense Added");
       console.log("Expense added");
     } catch (err) {
       console.log(err);
@@ -67,7 +90,10 @@ const AddExpense = () => {
 
   return (
     <div className="flex px-4 py-10 justify-center min-h-screen items-center bg-gradient-to-br from-blue-50 to-blue-100">
-      <form className="w-full max-w-lg bg-white rounded-2xl shadow-xl p-6 space-y-5 border border-gray-100" onSubmit={handleExpense}>
+      <form
+        className="w-full max-w-lg bg-white rounded-2xl shadow-xl p-6 space-y-5 border border-gray-100"
+        onSubmit={handleExpense}
+      >
         <input
           className="w-full border border-gray-300 focus:border-blue-400 focus:ring-blue-200 p-2 rounded-lg outline-none"
           placeholder="description"
@@ -80,7 +106,6 @@ const AddExpense = () => {
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
         />
-
         <div className="relative">
           <button
             type="button"
@@ -104,12 +129,10 @@ const AddExpense = () => {
                     >
                       {i.name}
                     </li>
-                  ))
-              }
+                  ))}
             </ul>
           )}
         </div>
-
         <div className="relative">
           <button
             type="button"
@@ -133,8 +156,7 @@ const AddExpense = () => {
                     >
                       {g.name}
                     </li>
-                  ))
-              }
+                  ))}
             </ul>
           )}
         </div>
@@ -145,7 +167,6 @@ const AddExpense = () => {
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         />
-
         <div>
           <label className="mr-2 font-semibold">Split Type:</label>
           <select
@@ -166,12 +187,22 @@ const AddExpense = () => {
               return (
                 <div key={s.userId} className="flex justify-between items-center mb-1">
                   <span>{member?.name}</span>
-                  <input
-                    type="number"
-                    className="border rounded px-2 py-1 w-20"
-                    value={s.amount}
-                    onChange={(e) => handleSplitChange(s.userId, e.target.value)}
-                  />
+                  {splitType === "percentage" ? (
+                    <input
+                      type="number"
+                      className="border rounded px-2 py-1 w-20"
+                      value={s.percentage || 0}
+                      onChange={(e) => handlePercentageChange(s.userId, e.target.value)}
+                      placeholder="%"
+                    />
+                  ) : (
+                    <input
+                      type="number"
+                      className="border rounded px-2 py-1 w-20"
+                      value={s.amount}
+                      onChange={(e) => handleSplitChange(s.userId, e.target.value)}
+                    />
+                  )}
                 </div>
               );
             })}

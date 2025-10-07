@@ -40,7 +40,7 @@ const Login = () => {
         className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-sm border border-gray-100"
       >
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-          Welcome Back 👋
+          Welcome Back!!
         </h2>
 
         <div className="flex flex-col gap-4">
