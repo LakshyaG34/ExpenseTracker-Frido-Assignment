@@ -1,8 +1,24 @@
-import React from "react";
 import { useSelector } from "react-redux";
 
 const Expense = () => {
   const expenses = useSelector((state) => state.expense);
+
+  const handleDelete = async (expenseId) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/expenses/${expenseId}`,
+        {
+          method: "DELETE"
+        }
+      );
+      if(!response.ok)
+      {
+        throw new Error("Error in handleExpense Delete")
+      }
+      alert("Expense Deleted!!!")
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   if (!expenses || expenses.length === 0)
     return (
@@ -34,8 +50,8 @@ const Expense = () => {
 
             <div className="text-gray-700 space-y-1">
               <p>
-                <span className="font-medium">Amount:</span>{" "}
-                ₹{expense.amount.toLocaleString()}
+                <span className="font-medium">Amount:</span> ₹
+                {expense.amount.toLocaleString()}
               </p>
               <p>
                 <span className="font-medium">Paid By:</span>{" "}
@@ -73,6 +89,7 @@ const Expense = () => {
                 day: "numeric",
               })}
             </p>
+            <button onClick = {()=>handleDelete(expense._id)} className="mt-2 border border-red-400 text-red-400 rounded-2xl px-2 py-1 cursor-pointer hover:bg-red-100 transition-all duration-200">Delete</button>
           </div>
         ))}
       </div>
