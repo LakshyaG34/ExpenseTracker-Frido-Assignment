@@ -33,10 +33,12 @@ Follow these steps to run the project locally 👇
 
 ### 1️⃣ Clone the Repository
 
-```bash
+
 git clone https://github.com/your-username/expense-tracker-mern.git
 cd expense-tracker-mern
-2️⃣ Backend Setup
+
+```bash
+### 2️⃣ Backend Setup
 bash
 Copy code
 cd backend
@@ -50,13 +52,14 @@ JWT_SECRET=your_secret_key
 PORT=5000
 Then start the backend server:
 
-bash
+```bash
 Copy code
 npm run dev
 Backend should now be running on 👉 http://localhost:5000
 
-3️⃣ Frontend Setup
-bash
+
+### 3️⃣ Frontend Setup
+```bash
 Copy code
 cd frontend
 npm install
