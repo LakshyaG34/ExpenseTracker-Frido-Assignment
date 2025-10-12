@@ -118,17 +118,26 @@ PUT     /api/groups/:groupId            updateGroup
 ```
 
 📸 Screenshots
-🏠 Dashboard
+🏠 OLD Dashboard
 <img width="1920" height="1080" alt="Screenshot (3398)" src="https://github.com/user-attachments/assets/e43d6455-70c9-4c35-b930-a23af2c0aa6d" />
+
+🏠 NEW Dashboard after UI Improvement
+<img width="1919" height="931" alt="Screenshot 2025-10-13 021307" src="https://github.com/user-attachments/assets/795969af-619f-45dd-9db6-7b6b1472cb71" />
 
 ➕ Add Expense Page
 <img width="1920" height="1080" alt="Screenshot (3399)" src="https://github.com/user-attachments/assets/f222fb44-5ba0-4a3c-8c50-0befee7d8edc" />
 
-👥 Group
+👥 OLD Group
 <img width="1920" height="1080" alt="Screenshot (3401)" src="https://github.com/user-attachments/assets/bc8d24be-a2ac-4475-b0cb-eb687b5382ac" />
+
+👥 NEW Group after UI Improvement
+<img width="1919" height="931" alt="Screenshot 2025-10-13 021329" src="https://github.com/user-attachments/assets/50cc8b95-2f23-4bfc-899f-79b5cc513a27" />
 
 👥 Group Creation
 <img width="1920" height="1080" alt="Screenshot (3402)" src="https://github.com/user-attachments/assets/5d33fd85-7529-4a5b-a74a-dc4daa1198d3" />
+
+MOBILE VIEW
+<img width="462" height="790" alt="Screenshot 2025-10-13 021435" src="https://github.com/user-attachments/assets/dd722f4d-a724-478c-9c16-994775753079" />
 
 💰 Balance Summary
 <img width="1920" height="1080" alt="Screenshot (3400)" src="https://github.com/user-attachments/assets/8c72d572-6d2d-401e-a828-9a352d9f8510" />
