@@ -64,22 +64,22 @@ const Expense = () => {
 
   return (
     <div className="min-h-screen py-10 px-5">
-      <h2 className="text-4xl font-semibold text-center text-green-500 mb-8">
+      <h2 className="text-4xl font-semibold text-center text-white mb-12">
         Expenses
       </h2>
-      <input placeholder="Search By category" value = {newCategory} onChange = {(e)=>setNewCategory(e.target.value)} className="text-white border border-white rounded-2xl p-2 mb-4 mx-auto block"/>
+      <input placeholder="Search By Category...." value = {newCategory} onChange = {(e)=>setNewCategory(e.target.value)} className="text-pink-400 border border-pink-500 rounded-2xl p-2 mx-auto block mb-10"/>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {paginatedExpenses.map((expense) => (
           <div
             key={expense._id}
-            className="bg-pink-400/50 border border-pink-500 shadow-lg rounded-2xl p-6 hover:shadow-2xl transition-shadow duration-300"
+            className="bg-pink-400/50 border border-pink-500 shadow-lg rounded-2xl p-6 hover:shadow-2xl transition-shadow duration-300 [box-shadow:0_0_10px_rgba(240,100,100,0.8),0_0_10px_rgba(240,100,100,0.8),0_0_10px_rgba(240,100,100,0.8),0_0_10px_rgba(100,100,240,0.8)] hover:[box-shadow:0_0_10px_rgba(240,100,100,0.8),0_0_20px_rgba(240,100,100,0.8),0_0_20px_rgba(240,100,100,0.8),0_0_30px_rgba(240,100,100,0.8)]"
           >
             <div className="flex justify-between items-center mb-3">
               <h3 className="text-xl font-semibold text-white">
                 {expense.description}
               </h3>
-              <span className="text-sm px-3 py-1 rounded-full bg-green-100 text-green-700">
+              <span className="text-sm px-3 py-1 rounded-full bg-green-100 text-green-700 [box-shadow:0_0_10px_rgba(50,240,50,0.8),0_0_10px_rgba(50,240,50,0.8),0_0_10px_rgba(50,240,50,0.8),0_0_10px_rgba(50,240,50,0.8)]">
                 {expense.category}
               </span>
             </div>
@@ -129,7 +129,7 @@ const Expense = () => {
           </div>
         ))}
       </div>
-      <div className="flex w-full max-w-xl justify-between mx-auto mt-4">
+      <div className="flex w-full max-w-xl justify-between mx-auto mt-10">
         <button onClick = {handlePrev} disabled={currentPage===1} className="border border-white rounded-lg text-white p-2 hover:bg-white/60 hover:text-black transition duration-200">
           Prev
         </button>

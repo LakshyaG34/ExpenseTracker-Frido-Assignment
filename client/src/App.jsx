@@ -65,7 +65,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="bg-black">
+    <div className="bg-black playwrite-font">
       <Navbar />
       <Routes>
         <Route path="/login" element={<Login />} />
