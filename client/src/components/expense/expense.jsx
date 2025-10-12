@@ -73,10 +73,10 @@ const Expense = () => {
         {paginatedExpenses.map((expense) => (
           <div
             key={expense._id}
-            className="bg-white shadow-lg rounded-2xl p-6 hover:shadow-2xl transition-shadow duration-300"
+            className="bg-pink-400/50 border border-pink-500 shadow-lg rounded-2xl p-6 hover:shadow-2xl transition-shadow duration-300"
           >
             <div className="flex justify-between items-center mb-3">
-              <h3 className="text-xl font-semibold text-gray-800">
+              <h3 className="text-xl font-semibold text-white">
                 {expense.description}
               </h3>
               <span className="text-sm px-3 py-1 rounded-full bg-green-100 text-green-700">
@@ -84,7 +84,7 @@ const Expense = () => {
               </span>
             </div>
 
-            <div className="text-gray-700 space-y-1">
+            <div className="text-white space-y-1">
               <p>
                 <span className="font-medium">Amount:</span> ₹
                 {expense.amount.toLocaleString()}
