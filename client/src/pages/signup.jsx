@@ -13,7 +13,7 @@ const Signup = () => {
   const handleFetch = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/auth/signup", {
+      const response = await fetch("http://localhost:5000/api/auth/signup", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -35,7 +35,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-red-50 to-red-100">
+    <div className="flex justify-center items-center min-h-screen">
       <form
         onSubmit={handleFetch}
         className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-sm border border-gray-100"
@@ -50,7 +50,7 @@ const Signup = () => {
             placeholder="Full Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            className="border border-pink-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400 transition"
           />
 
           <input
@@ -58,7 +58,7 @@ const Signup = () => {
             placeholder="Email Address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            className="border border-pink-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400 transition"
           />
 
           <input

@@ -89,7 +89,7 @@ const AddExpense = () => {
   };
 
   return (
-    <div className="flex px-4 py-10 justify-center min-h-screen items-center bg-gradient-to-br from-blue-50 to-blue-100">
+    <div className="flex px-4 py-10 justify-center min-h-screen items-center">
       <form
         className="w-full max-w-lg bg-white rounded-2xl shadow-xl p-6 space-y-5 border border-gray-100"
         onSubmit={handleExpense}

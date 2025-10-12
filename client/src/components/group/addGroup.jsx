@@ -26,7 +26,7 @@ const AddGroup = () => {
     }
 
     try {
-      const response = await fetch("/api/groups", {
+      const response = await fetch("http://localhost:5000/api/groups", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         credentials: "include",
@@ -48,10 +48,10 @@ const AddGroup = () => {
 
   return (
     <form
-      className="flex flex-col justify-center items-center min-h-screen gap-5 bg-gradient-to-br from-blue-50 to-blue-100 px-4"
+      className="flex flex-col justify-center items-center min-h-screen gap-5 px-4"
       onSubmit={handleGroups}
     >
-      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md border border-gray-100">
+      <div className="bg-white p-8 rounded-2xl w-full max-w-md border border-gray-100 [box-shadow:0_0_10px_rgba(200,200,100,1),0_0_20px_rgba(200,100,200,1),0_0_20px_rgba(100,200,200,1),0_0_10px_rgba(100,200,100,1)] hover:[box-shadow:0_0_20px_rgba(200,200,100,1),0_0_30px_rgba(200,100,200,1),0_0_40px_rgba(100,200,200,1),0_0_60px_rgba(100,200,100,1)] transition duration-300">
         <h2 className="text-2xl font-semibold text-center text-blue-700 mb-6">
           Create New Group
         </h2>

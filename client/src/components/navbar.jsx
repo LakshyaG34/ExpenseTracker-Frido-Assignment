@@ -7,7 +7,7 @@ const Navbar = () => {
   const { user, setUser } = useAuthContext();
   const handleLogout = async () => {
     try {
-      const response = await fetch("/api/auth/logout", {
+      const response = await fetch("http://localhost:5000/api/auth/logout", {
         method: "POST",
       });
       if (!response.ok) {
@@ -22,38 +22,38 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="relative">
-      <div className="sticky top-0 bg-white/80 backdrop-blur-sm shadow-md z-50">
+      <div className="sticky top-0 backdrop-blur-sm z-50">
         <div className="flex justify-between items-center p-4">
           <div>
             <button
               onClick={() => navigate("/")}
-              className="font-bold text-lg text-orange-400 hover:text-blue-800 transition-colors duration-200"
+              className="font-bold text-2xl text-orange-400 [text-shadow:0_0_5px_rgba(180,180,10,0.4),0_0_10px_rgba(180,180,10,0.6),0_0_10px_rgba(180,180,10,0.8),0_0_20px_rgba(180,180,10,1)] hover:text-blue-800 transition-colors duration-200 cursor-pointer"
             >
-              Frido-Assignment
+              FRIDO
             </button>
           </div>
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-6">
             <button
               onClick={() => navigate("/expense/add")}
-              className="border border-blue-400 text-blue-400 rounded-2xl px-2 py-1 cursor-pointer hover:bg-blue-100 transition-all duration-200"
+              className="border border-blue-400 text-blue-400 [box-shadow:0_0_5px_rgba(72,72,253,1),0_0_10px_rgba(72,72,253,0.8),0_0_10px_rgba(72,72,253,0.6),0_0_10px_rgba(72,72,253,0.4)] rounded-2xl px-2 py-1 cursor-pointer hover:bg-blue-100 transition-all duration-200"
             >
               Add Expense
             </button>
             <button
               onClick={() => navigate("/balance")}
-              className="border border-blue-400 text-blue-400 rounded-2xl px-2 py-1 cursor-pointer hover:bg-blue-100 transition-all duration-200"
+              className="border border-blue-400 text-blue-400 [box-shadow:0_0_5px_rgba(72,72,253,1),0_0_10px_rgba(72,72,253,0.8),0_0_10px_rgba(72,72,253,0.6),0_0_10px_rgba(72,72,253,0.4)]  rounded-2xl px-2 py-1 cursor-pointer hover:bg-blue-100 transition-all duration-200"
             >
               Balances
             </button>
             <button
               onClick={() => navigate("/groups")}
-              className="border border-blue-400 text-blue-400 rounded-2xl px-2 py-1 cursor-pointer hover:bg-blue-100 transition-all duration-200"
+              className="border border-blue-400 text-blue-400 [box-shadow:0_0_5px_rgba(72,72,253,1),0_0_10px_rgba(72,72,253,0.8),0_0_10px_rgba(72,72,253,0.6),0_0_10px_rgba(72,72,253,0.4)]  rounded-2xl px-2 py-1 cursor-pointer hover:bg-blue-100 transition-all duration-200"
             >
               Groups
             </button>
             <button
               onClick={() => navigate("/groups/add")}
-              className="border border-blue-400 text-blue-400 rounded-2xl px-2 py-1 cursor-pointer hover:bg-blue-100 transition-all duration-200"
+              className="border border-blue-400 text-blue-400 [box-shadow:0_0_5px_rgba(72,72,253,1),0_0_10px_rgba(72,72,253,0.8),0_0_10px_rgba(72,72,253,0.6),0_0_10px_rgba(72,72,253,0.4)]  rounded-2xl px-2 py-1 cursor-pointer hover:bg-blue-100 transition-all duration-200"
             >
               Create Groups
             </button>
@@ -63,7 +63,7 @@ const Navbar = () => {
               <>
                 <button
                   onClick={handleLogout}
-                  className="border border-red-400 text-red-400 rounded-2xl px-2 py-1 cursor-pointer hover:bg-red-100 transition-all duration-200"
+                  className="border border-red-400 text-red-400 [box-shadow:0_0_5px_rgba(240,72,72,1),0_0_10px_rgba(240,72,72,0.8),0_0_10px_rgba(240,72,72,0.6),0_0_10px_rgba(240,72,72,0.4)] rounded-2xl px-2 py-1 cursor-pointer hover:bg-red-100 transition-all duration-200"
                 >
                   Logout
                 </button>

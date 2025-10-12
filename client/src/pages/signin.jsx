@@ -11,7 +11,7 @@ const Login = () => {
   const handleFetch = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/auth/login", {
+      const response = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -34,12 +34,12 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-red-50 to-red-100">
+    <div className="flex justify-center items-center min-h-screen">
       <form
         onSubmit={handleFetch}
-        className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-sm border border-gray-100"
+        className="shadow-xl rounded-2xl p-8 w-full max-w-sm border border-pink-400 bg-black/40 [box-shadow:0_0_10px_rgba(240,50,100,0.8),0_0_20px_rgba(240,50,100,0.8),0_0_30px_rgba(240,50,100,0.8),0_0_40px_rgba(240,50,100,0.8)]"
       >
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+        <h2 className="text-2xl font-bold text-center text-purple-800 mb-6">
           Welcome Back!!
         </h2>
 
@@ -49,7 +49,7 @@ const Login = () => {
             placeholder="Email Address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition text-white"
           />
 
           <input
@@ -57,7 +57,7 @@ const Login = () => {
             placeholder="Enter Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition text-white"
           />
 
           <button

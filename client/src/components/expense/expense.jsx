@@ -1,13 +1,18 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {removeExpense} from "../../redux/expenseSlice.js"
 
 const Expense = () => {
+
+  const [newCategory, setNewCategory] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
   const expenses = useSelector((state) => state.expense);
   const dispatch = useDispatch();
+  const itemsPerPage = 3;
 
   const handleDelete = async (expenseId) => {
     try {
-      const response = await fetch(`/api/expenses/${expenseId}`,
+      const response = await fetch(`http://localhost:5000/api/expenses/${expenseId}`,
         {
           method: "DELETE"
         }
@@ -30,14 +35,42 @@ const Expense = () => {
       </div>
     );
 
+    const filteredExpense = (category) =>{
+      if(!category.trim())
+      {
+        return expenses;
+      }
+      return expenses.filter((e)=>e.category.toLowerCase() === category.toLowerCase());
+    }
+
+    const finalExpense = filteredExpense(newCategory);
+
+    const totalPages = Math.ceil(finalExpense.length/itemsPerPage);
+    const paginatedExpenses = finalExpense.slice((currentPage - 1)*itemsPerPage, currentPage*itemsPerPage);
+
+    const handlePrev = () =>{
+      if(currentPage > 1)
+      {
+        setCurrentPage(currentPage - 1);
+      }
+    }
+    const handleNext = () =>{
+      if(currentPage < totalPages)
+      {
+        setCurrentPage(currentPage + 1);
+      }
+    }
+
+
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-5">
-      <h2 className="text-3xl font-semibold text-center text-gray-800 mb-8">
+    <div className="min-h-screen py-10 px-5">
+      <h2 className="text-4xl font-semibold text-center text-green-500 mb-8">
         Expenses
       </h2>
+      <input placeholder="Search By category" value = {newCategory} onChange = {(e)=>setNewCategory(e.target.value)} className="text-white border border-white rounded-2xl p-2 mb-4 mx-auto block"/>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {expenses.map((expense) => (
+        {paginatedExpenses.map((expense) => (
           <div
             key={expense._id}
             className="bg-white shadow-lg rounded-2xl p-6 hover:shadow-2xl transition-shadow duration-300"
@@ -95,6 +128,15 @@ const Expense = () => {
             <button onClick = {()=>handleDelete(expense._id)} className="mt-2 border border-red-400 text-red-400 rounded-2xl px-2 py-1 cursor-pointer hover:bg-red-100 transition-all duration-200">Delete</button>
           </div>
         ))}
+      </div>
+      <div className="flex w-full max-w-xl justify-between mx-auto mt-4">
+        <button onClick = {handlePrev} disabled={currentPage===1} className="border border-white rounded-lg text-white p-2 hover:bg-white/60 hover:text-black transition duration-200">
+          Prev
+        </button>
+        <span className="border border-white rounded-lg text-white p-2 hover:bg-white/60 hover:text-black transition duration-200">{currentPage}</span>
+        <button onClick = {handleNext} disabled={currentPage===totalPages} className="border border-white rounded-lg text-white p-2 hover:bg-white/60 hover:text-black transition duration-200">
+          Next
+        </button>
       </div>
     </div>
   );

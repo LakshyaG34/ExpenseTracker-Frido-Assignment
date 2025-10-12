@@ -5,7 +5,7 @@ const Groups = () => {
   const groups = useSelector((state) => state.group);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 py-6">
+    <div className="min-h-screen py-6">
       <div className="flex flex-col gap-4">
         {groups.length > 0
           ? groups.map((group) => (
