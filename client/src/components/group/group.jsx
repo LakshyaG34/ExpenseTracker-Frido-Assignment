@@ -6,7 +6,7 @@ const Groups = () => {
 
   return (
     <div className="min-h-screen py-6 mt-14">
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-10">
         {groups.length > 0
           ? groups.map((group) => (
               <GroupCard

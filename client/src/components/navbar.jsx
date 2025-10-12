@@ -93,34 +93,34 @@ const Navbar = () => {
             {isOpen && (
               <>
                 {user ? (
-                  <div className="flex flex-col gap-1 absolute -left-25 top-0 z-59">
+                  <div className="flex flex-col gap-1 absolute -left-25 top-12 z-40 border border-white bg-white/70 p-4 rounded-lg">
                     <button
                       onClick={() => navigate("/expense/add")}
-                      className="border border-blue-400 text-blue-400 rounded-2xl px-2 py-1 cursor-pointer hover:bg-blue-100 transition-all duration-200"
+                      className="bg-white border border-blue-400 text-blue-400 rounded-2xl px-2 py-1 cursor-pointer hover:bg-blue-100 transition-all duration-200"
                     >
                       Add Expense
                     </button>
                     <button
                       onClick={() => navigate("/balance")}
-                      className="border border-blue-400 text-blue-400 rounded-2xl px-2 py-1 cursor-pointer hover:bg-blue-100 transition-all duration-200"
+                      className="bg-white border border-blue-400 text-blue-400 rounded-2xl px-2 py-1 cursor-pointer hover:bg-blue-100 transition-all duration-200"
                     >
                       Balances
                     </button>
                     <button
                       onClick={() => navigate("/groups")}
-                      className="border border-blue-400 text-blue-400 rounded-2xl px-2 py-1 cursor-pointer hover:bg-blue-100 transition-all duration-200"
+                      className="bg-white border border-blue-400 text-blue-400 rounded-2xl px-2 py-1 cursor-pointer hover:bg-blue-100 transition-all duration-200"
                     >
                       Groups
                     </button>
                     <button
                       onClick={() => navigate("/groups/add")}
-                      className="border border-blue-400 text-blue-400 rounded-2xl px-2 py-1 cursor-pointer hover:bg-blue-100 transition-all duration-200"
+                      className="bg-white border border-blue-400 text-blue-400 rounded-2xl px-2 py-1 cursor-pointer hover:bg-blue-100 transition-all duration-200"
                     >
                       Create Groups
                     </button>
                     <button
                       onClick={handleLogout}
-                      className="border border-red-400 text-red-400 rounded-2xl px-4 py-2 cursor-pointer hover:bg-red-100 transition-all duration-200"
+                      className="bg-red-500/60 border border-red-400 text-red-600 rounded-2xl px-4 py-2 cursor-pointer hover:bg-red-100 transition-all duration-200"
                     >
                       Logout
                     </button>
@@ -146,7 +146,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="md:hidden w-full bg-white/90 backdrop-blur-md shadow-md rounded-b-lg p-4 flex flex-col gap-2 absolute top-full left-0 z-40"></div>
     </div>
   );
 };
