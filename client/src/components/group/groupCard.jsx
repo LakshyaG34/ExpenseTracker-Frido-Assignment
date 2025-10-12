@@ -21,10 +21,10 @@ const GroupCard = ({ name, members, createdBy, id }) => {
     }
   };
   return (
-    <div className="w-full max-w-lg mx-auto bg-white hover:shadow-xl transition-all duration-300 rounded-2xl p-6 border border-gray-100 [box-shadow:0_0_10px_rgba(200, 200, 200, 1)]">
+    <div className="w-full max-w-lg mx-auto bg-purple-500/80 hover:shadow-xl transition-all duration-300 rounded-2xl p-6 border border-transparent [box-shadow:0_0_10px_rgba(200,0,200,1),0_0_20px_rgba(200,0,200,1),0_0_30px_rgba(200,0,200,1)]">
       <div className="flex justify-between items-center mb-3">
         <h3 className="text-xl font-semibold text-gray-800">{name}</h3>
-        <span className="text-xs px-3 py-1 rounded-full bg-blue-100 text-blue-700">
+        <span className="text-xs px-3 py-1 rounded-full bg-blue-100 text-blue-700 [box-shadow:0_0_10px_rgba(0,0,250,1),0_0_20px_rgba(0,0,250,1),0_0_30px_rgba(0,0,250,1)]">
           Created by {createdBy || "Unknown"}
         </span>
       </div>

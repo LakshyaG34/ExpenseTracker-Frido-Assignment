@@ -89,24 +89,26 @@ const AddExpense = () => {
   };
 
   return (
-    <div className="flex px-4 py-10 justify-center min-h-screen items-center">
+    <div className="flex flex-col px-4 py-10 justify-center min-h-screen items-center">
+      <span className="text-white text-3xl mb-10">Add Expense</span>
       <form
-        className="w-full max-w-lg bg-white rounded-2xl shadow-xl p-6 space-y-5 border border-gray-100"
+        className="w-full max-w-lg bg-pink-400/40 rounded-2xl shadow-xl p-6 space-y-5 border border-gray-100"
         onSubmit={handleExpense}
       >
+        {/* <label className="text-white">Description</label> */}
         <input
-          className="w-full border border-gray-300 focus:border-blue-400 focus:ring-blue-200 p-2 rounded-lg outline-none"
-          placeholder="description"
+          className="w-full text-white border border-gray-300 focus:border-blue-400 focus:ring-blue-200 p-2 rounded-lg outline-none"
+          placeholder="Enter Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
         <input
-          className="w-full border border-gray-300 focus:border-blue-400 focus:ring-blue-200 p-2 rounded-lg outline-none"
-          placeholder="amount"
+          className="w-full text-white border border-gray-300 focus:border-blue-400 focus:ring-blue-200 p-2 rounded-lg outline-none"
+          placeholder="Enter Amount"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
         />
-        <div className="relative">
+        <div className="relative text-white">
           <button
             type="button"
             className="w-full border border-gray-300 p-2 rounded-lg text-left hover:bg-gray-50"
@@ -133,7 +135,7 @@ const AddExpense = () => {
             </ul>
           )}
         </div>
-        <div className="relative">
+        <div className="relative text-white">
           <button
             type="button"
             className="border p-1 rounded w-full text-left"
@@ -162,12 +164,12 @@ const AddExpense = () => {
         </div>
 
         <input
-          className="w-full border border-gray-300 focus:border-blue-400 focus:ring-blue-200 p-2 rounded-lg outline-none"
+          className="w-full text-white border border-gray-300 focus:border-blue-400 focus:ring-blue-200 p-2 rounded-lg outline-none"
           placeholder="Enter Category"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         />
-        <div>
+        <div className="text-white">
           <label className="mr-2 font-semibold">Split Type:</label>
           <select
             value={splitType}
@@ -180,17 +182,17 @@ const AddExpense = () => {
           </select>
         </div>
         {selectedGroup && splitDetails.length > 0 && (
-          <div className="border p-2 rounded mt-2">
-            <h4 className="font-semibold mb-1">Split Details:</h4>
+          <div className="border p-2 rounded mt-2 text-white">
+            <h4 className="font-semibold mb-1 text-white">Split Details:</h4>
             {splitDetails.map((s) => {
               const member = group.find((g) => g._id === selectedGroup).members.find((m) => m._id === s.userId);
               return (
-                <div key={s.userId} className="flex justify-between items-center mb-1">
+                <div key={s.userId} className="flex justify-between items-center mb-1 text-white">
                   <span>{member?.name}</span>
                   {splitType === "percentage" ? (
                     <input
                       type="number"
-                      className="border rounded px-2 py-1 w-20"
+                      className="border rounded px-2 py-1 w-20 text-white"
                       value={s.percentage || 0}
                       onChange={(e) => handlePercentageChange(s.userId, e.target.value)}
                       placeholder="%"
@@ -198,7 +200,7 @@ const AddExpense = () => {
                   ) : (
                     <input
                       type="number"
-                      className="border rounded px-2 py-1 w-20"
+                      className="border rounded px-2 py-1 w-20 text-white"
                       value={s.amount}
                       onChange={(e) => handleSplitChange(s.userId, e.target.value)}
                     />
@@ -208,7 +210,7 @@ const AddExpense = () => {
             })}
           </div>
         )}
-        <div>
+        <div className="text-white">
           <label className="mr-2 font-semibold">Date:</label>
           <input
             type="date"

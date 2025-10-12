@@ -5,8 +5,8 @@ const Groups = () => {
   const groups = useSelector((state) => state.group);
 
   return (
-    <div className="min-h-screen py-6">
-      <div className="flex flex-col gap-4">
+    <div className="min-h-screen py-6 mt-14">
+      <div className="flex flex-wrap gap-4">
         {groups.length > 0
           ? groups.map((group) => (
               <GroupCard
