@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {removeExpense} from "../../redux/expenseSlice.js"
+import { removeExpense } from "../../redux/expenseSlice.js";
 
 const Expense = () => {
-
   const [newCategory, setNewCategory] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const expenses = useSelector((state) => state.expense);
@@ -12,17 +11,17 @@ const Expense = () => {
 
   const handleDelete = async (expenseId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/expenses/${expenseId}`,
+      const response = await fetch(
+        `http://localhost:5000/api/expenses/${expenseId}`,
         {
-          method: "DELETE"
+          method: "DELETE",
         }
       );
-      if(!response.ok)
-      {
-        throw new Error("Error in handleExpense Delete")
+      if (!response.ok) {
+        throw new Error("Error in handleExpense Delete");
       }
-      dispatch(removeExpense(expenseId))
-      alert("Expense Deleted!!!")
+      dispatch(removeExpense(expenseId));
+      alert("Expense Deleted!!!");
     } catch (err) {
       console.log(err);
     }
@@ -35,39 +34,45 @@ const Expense = () => {
       </div>
     );
 
-    const filteredExpense = (category) =>{
-      if(!category.trim())
-      {
-        return expenses;
-      }
-      return expenses.filter((e)=>e.category.toLowerCase() === category.toLowerCase());
+  const filteredExpense = (category) => {
+    if (!category.trim()) {
+      return expenses;
     }
+    return expenses.filter(
+      (e) => e.category.toLowerCase() === category.toLowerCase()
+    );
+  };
 
-    const finalExpense = filteredExpense(newCategory);
+  const finalExpense = filteredExpense(newCategory);
 
-    const totalPages = Math.ceil(finalExpense.length/itemsPerPage);
-    const paginatedExpenses = finalExpense.slice((currentPage - 1)*itemsPerPage, currentPage*itemsPerPage);
+  const totalPages = Math.ceil(finalExpense.length / itemsPerPage);
+  const paginatedExpenses = finalExpense.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
-    const handlePrev = () =>{
-      if(currentPage > 1)
-      {
-        setCurrentPage(currentPage - 1);
-      }
+  const handlePrev = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
     }
-    const handleNext = () =>{
-      if(currentPage < totalPages)
-      {
-        setCurrentPage(currentPage + 1);
-      }
+  };
+  const handleNext = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
     }
-
+  };
 
   return (
     <div className="min-h-screen py-10 px-5">
       <h2 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-pink-400 to-purple-400 animate-pulse mb-12 drop-shadow-[0_0_10px_rgba(255,255,255,0.6)]">
         Expenses
       </h2>
-      <input placeholder="Search By Category...." value = {newCategory} onChange = {(e)=>setNewCategory(e.target.value)} className="block mx-auto mb-10 w-full max-w-md px-4 py-2 text-pink-300 placeholder-pink-300 bg-transparent border-2 border-pink-500 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-400 backdrop-blur-md shadow-[0_0_10px_rgba(255,0,150,0.5)] transition-all duration-300"/>
+      <input
+        placeholder="Search By Category...."
+        value={newCategory}
+        onChange={(e) => setNewCategory(e.target.value)}
+        className="block mx-auto mb-10 w-full max-w-md px-4 py-2 text-pink-300 placeholder-pink-300 bg-transparent border-2 border-pink-500 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-400 backdrop-blur-md shadow-[0_0_10px_rgba(255,0,150,0.5)] transition-all duration-300"
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {paginatedExpenses.map((expense) => (
@@ -118,23 +123,40 @@ const Expense = () => {
               </ul>
             </div>
 
-            <p className="text-xs text-gray-500 mt-3 text-right">
+            <p className="text-xs text-right text-pink-400 italic tracking-wider mt-3">
               {new Date(expense.date).toLocaleDateString("en-IN", {
                 year: "numeric",
                 month: "short",
                 day: "numeric",
               })}
             </p>
-            <button onClick = {()=>handleDelete(expense._id)} className="mt-2 border border-red-400 text-red-400 rounded-2xl px-2 py-1 cursor-pointer hover:bg-red-100 transition-all duration-200">Delete</button>
+            <button
+              onClick={() => handleDelete(expense._id)}
+              className="mt-3 w-full max-w-[80px] border border-red-400 text-red-300 rounded-2xl px-3 py-2 
+            hover:bg-red-500 hover:text-white hover:shadow-[0_0_15px_rgba(255,0,0,0.6)] 
+              active:scale-95 transition-all duration-200 cursor-pointer"
+            >
+              Delete
+            </button>
           </div>
         ))}
       </div>
       <div className="flex w-full max-w-xl justify-between mx-auto mt-10">
-        <button onClick = {handlePrev} disabled={currentPage===1} className="border border-white rounded-lg text-white p-2 hover:bg-white/60 hover:text-black transition duration-200">
+        <button
+          onClick={handlePrev}
+          disabled={currentPage === 1}
+          className="border border-white rounded-lg text-white p-2 hover:bg-white/60 hover:text-black transition duration-200"
+        >
           Prev
         </button>
-        <span className="border border-white rounded-lg text-white p-2 hover:bg-white/60 hover:text-black transition duration-200">{currentPage}</span>
-        <button onClick = {handleNext} disabled={currentPage===totalPages} className="border border-white rounded-lg text-white p-2 hover:bg-white/60 hover:text-black transition duration-200">
+        <span className="border border-white rounded-lg text-white p-2 hover:bg-white/60 hover:text-black transition duration-200">
+          {currentPage}
+        </span>
+        <button
+          onClick={handleNext}
+          disabled={currentPage === totalPages}
+          className="border border-white rounded-lg text-white p-2 hover:bg-white/60 hover:text-black transition duration-200"
+        >
           Next
         </button>
       </div>

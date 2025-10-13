@@ -27,7 +27,7 @@ const Navbar = () => {
           <div>
             <button
               onClick={() => navigate("/")}
-              className="font-bold text-2xl text-orange-400 [text-shadow:0_0_5px_rgba(180,180,10,0.4),0_0_10px_rgba(180,180,10,0.6),0_0_10px_rgba(180,180,10,0.8),0_0_20px_rgba(180,180,10,1)] hover:text-blue-800 transition-colors duration-200 cursor-pointer"
+              className="font-bold italic text-2xl text-orange-400 [text-shadow:0_0_5px_rgba(180,180,10,0.4),0_0_10px_rgba(180,180,10,0.6),0_0_10px_rgba(180,180,10,0.8),0_0_20px_rgba(180,180,10,1)] transition-colors duration-200 cursor-pointer"
             >
               FRIDO
             </button>
