@@ -64,10 +64,10 @@ const Expense = () => {
 
   return (
     <div className="min-h-screen py-10 px-5">
-      <h2 className="text-4xl font-semibold text-center text-white mb-12">
+      <h2 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-pink-400 to-purple-400 animate-pulse mb-12 drop-shadow-[0_0_10px_rgba(255,255,255,0.6)]">
         Expenses
       </h2>
-      <input placeholder="Search By Category...." value = {newCategory} onChange = {(e)=>setNewCategory(e.target.value)} className="text-pink-400 border border-pink-500 rounded-2xl p-2 mx-auto block mb-10"/>
+      <input placeholder="Search By Category...." value = {newCategory} onChange = {(e)=>setNewCategory(e.target.value)} className="block mx-auto mb-10 w-full max-w-md px-4 py-2 text-pink-300 placeholder-pink-300 bg-transparent border-2 border-pink-500 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-400 backdrop-blur-md shadow-[0_0_10px_rgba(255,0,150,0.5)] transition-all duration-300"/>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {paginatedExpenses.map((expense) => (

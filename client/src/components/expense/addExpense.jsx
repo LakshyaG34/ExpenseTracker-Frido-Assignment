@@ -95,7 +95,6 @@ const AddExpense = () => {
         className="w-full max-w-lg bg-pink-400/40 rounded-2xl shadow-xl p-6 space-y-5 border border-gray-100"
         onSubmit={handleExpense}
       >
-        {/* <label className="text-white">Description</label> */}
         <input
           className="w-full text-white border border-gray-300 focus:border-blue-400 focus:ring-blue-200 p-2 rounded-lg outline-none"
           placeholder="Enter Description"

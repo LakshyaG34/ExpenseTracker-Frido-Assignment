@@ -65,7 +65,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="bg-black playwrite-font">
+    <div className="bg-gradient-to-br from-black via-gray-900 to-gray-800 playwrite-font">
       <Navbar />
       <Routes>
         <Route path="/login" element={<Login />} />
