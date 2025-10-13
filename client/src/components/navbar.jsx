@@ -126,7 +126,7 @@ const Navbar = () => {
                     </button>
                   </div>
                 ) : (
-                  <>
+                  <div className="flex flex-col gap-1 absolute -left-25 top-12 z-40 border border-white bg-white/70 p-4 rounded-lg">
                     <button
                       onClick={() => navigate("/login")}
                       className="border border-red-400 text-red-400 rounded-2xl px-4 py-2 cursor-pointer hover:bg-red-100 transition-all duration-200"
@@ -139,7 +139,7 @@ const Navbar = () => {
                     >
                       SignUp
                     </button>
-                  </>
+                  </div>
                 )}
               </>
             )}
