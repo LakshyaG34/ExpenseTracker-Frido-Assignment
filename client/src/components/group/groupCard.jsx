@@ -3,35 +3,34 @@ import { removeGroup } from "../../redux/groupSlice";
 
 const GroupCard = ({ name, members, createdBy, id }) => {
   const dispatch = useDispatch();
+
   const handleDelete = async (groupId) => {
     try {
       const response = await fetch(
-        `/api/groups/${groupId}`,
-        {
-          method: "DELETE",
-        }
+        `http://localhost:5000/api/groups/${groupId}`,
+        { method: "DELETE" }
       );
-      if (!response.ok) {
-        throw new Error("Error Deleting Group");
-      }
+      if (!response.ok) throw new Error("Error deleting group");
       dispatch(removeGroup(groupId));
-      alert("Group Deleted");
+      alert("Group deleted successfully");
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
+
   return (
-    <div className="w-full max-w-lg mx-auto bg-purple-500/80 hover:shadow-xl transition-all duration-300 rounded-2xl p-6 border border-transparent [box-shadow:0_0_10px_rgba(200,0,200,1),0_0_20px_rgba(200,0,200,1),0_0_30px_rgba(200,0,200,1)]">
+    <div className="w-full max-w-sm mx-auto bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-200 p-6 border border-gray-200">
       <div className="flex justify-between items-center mb-3">
-        <h3 className="text-xl font-semibold text-white/90">{name}</h3>
-        <span className="text-xs px-3 py-1 rounded-full bg-blue-100 text-blue-700 [box-shadow:0_0_10px_rgba(0,0,250,1),0_0_20px_rgba(0,0,250,1),0_0_30px_rgba(0,0,250,1)]">
-          Created by {createdBy || "Unknown"}
+        <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
+        <span className="text-xs px-3 py-1 rounded-full bg-blue-50 text-blue-700 font-medium border border-blue-200">
+          {createdBy ? `By ${createdBy}` : "Unknown"}
         </span>
       </div>
+
       <div className="mt-3">
-        <h4 className="text-sm font-medium text-gray-700 mb-1">Members:</h4>
+        <h4 className="text-sm font-medium text-gray-600 mb-2">Members</h4>
         {members && members.length > 0 ? (
-          <div className="flex flex-wrap gap-2 items-center">
+          <div className="flex flex-wrap gap-2">
             {members.map((member) => (
               <span
                 key={member._id}
@@ -40,16 +39,19 @@ const GroupCard = ({ name, members, createdBy, id }) => {
                 {member.name}
               </span>
             ))}
-            <button
-              onClick={() => handleDelete(id)}
-              className="mt-2 border border-red-400 text-red-400 rounded-2xl px-2 py-1 cursor-pointer hover:bg-red-100 transition-all duration-200"
-            >
-              Delete
-            </button>
           </div>
         ) : (
           <p className="text-sm text-gray-500 italic">No members yet</p>
         )}
+      </div>
+
+      <div className="mt-5 flex justify-end">
+        <button
+          onClick={() => handleDelete(id)}
+          className="text-sm font-medium text-red-600 border border-red-300 px-4 py-1.5 rounded-lg hover:bg-red-50 active:scale-95 transition-all duration-200"
+        >
+          Delete
+        </button>
       </div>
     </div>
   );

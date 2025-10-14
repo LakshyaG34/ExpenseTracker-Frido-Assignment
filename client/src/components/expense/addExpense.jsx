@@ -63,7 +63,7 @@ const AddExpense = () => {
   const handleExpense = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/expenses", {
+      const response = await fetch("http://localhost:5000/api/expenses", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         credentials: "include",
@@ -90,24 +90,28 @@ const AddExpense = () => {
 
   return (
     <div className="flex flex-col px-4 py-10 justify-center min-h-screen items-center">
-      <span className="text-white text-3xl mb-10">Add Expense</span>
+      <span className="text-black font-bold text-3xl mb-10">Add Expense</span>
       <form
-        className="w-full max-w-lg bg-pink-400/40 rounded-2xl shadow-xl p-6 space-y-5 border border-gray-100"
+        className="w-full max-w-lg rounded-2xl shadow-xl p-6 space-y-5 border border-gray-100"
         onSubmit={handleExpense}
       >
+        <label className="font-semibold">Description</label>
         <input
-          className="w-full text-white border border-gray-300 focus:border-blue-400 focus:ring-blue-200 p-2 rounded-lg outline-none"
+          className="w-full text-black border border-gray-300 focus:border-blue-400 focus:ring-blue-200 p-2 rounded-lg outline-none"
           placeholder="Enter Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
+
+        <label className="font-semibold">Description</label>
         <input
-          className="w-full text-white border border-gray-300 focus:border-blue-400 focus:ring-blue-200 p-2 rounded-lg outline-none"
+          className="w-full text-black border border-gray-300 focus:border-blue-400 focus:ring-blue-200 p-2 rounded-lg outline-none"
           placeholder="Enter Amount"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
         />
-        <div className="relative text-white">
+        <label className="font-semibold">Description</label>
+        <div className="relative">
           <button
             type="button"
             className="w-full border border-gray-300 p-2 rounded-lg text-left hover:bg-gray-50"
@@ -134,7 +138,8 @@ const AddExpense = () => {
             </ul>
           )}
         </div>
-        <div className="relative text-white">
+        <label className="font-semibold">Description</label>
+        <div className="relative">
           <button
             type="button"
             className="border p-1 rounded w-full text-left"
@@ -162,13 +167,14 @@ const AddExpense = () => {
           )}
         </div>
 
+        <label className="font-semibold">Description</label>
         <input
-          className="w-full text-white border border-gray-300 focus:border-blue-400 focus:ring-blue-200 p-2 rounded-lg outline-none"
+          className="w-full text-black border border-gray-300 focus:border-blue-400 focus:ring-blue-200 p-2 rounded-lg outline-none"
           placeholder="Enter Category"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         />
-        <div className="text-white">
+        <div>
           <label className="mr-2 font-semibold">Split Type:</label>
           <select
             value={splitType}
@@ -191,7 +197,7 @@ const AddExpense = () => {
                   {splitType === "percentage" ? (
                     <input
                       type="number"
-                      className="border rounded px-2 py-1 w-20 text-white"
+                      className="border rounded px-2 py-1 w-20"
                       value={s.percentage || 0}
                       onChange={(e) => handlePercentageChange(s.userId, e.target.value)}
                       placeholder="%"
@@ -199,7 +205,7 @@ const AddExpense = () => {
                   ) : (
                     <input
                       type="number"
-                      className="border rounded px-2 py-1 w-20 text-white"
+                      className="border rounded px-2 py-1 w-20"
                       value={s.amount}
                       onChange={(e) => handleSplitChange(s.userId, e.target.value)}
                     />

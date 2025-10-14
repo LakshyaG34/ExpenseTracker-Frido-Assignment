@@ -12,14 +12,8 @@ export const signup = async (req, res) => {
 
     const user = await Auth.findOne({ email });
     if (user) {
-
-      // console.log(a); //reference Error
-
-      // let a = 5;
       return res.status(409).json({ message: "User already exists" });
     }
-    // let n = email.length;
-    // if(email.slice(0, n))
     if(!email.include("."))
     {
       return res.status(404).json({err : "Wrong email body"});
@@ -113,11 +107,4 @@ export const getUsers = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
-
-function outer(){
-  let a = 5;
-  function inner(){
-    console.log(a);
-  }
-}
 

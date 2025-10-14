@@ -8,40 +8,35 @@ const Login = () => {
   const { setUser } = useAuthContext();
   const navigate = useNavigate();
 
-  const handleFetch = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/auth/login", {
+      const res = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({ email, password }),
       });
 
-      if (!response.ok) throw new Error("Login failed");
-
-      const data = await response.json();
+      if (!res.ok) throw new Error("Login failed");
+      const data = await res.json();
       setUser(data);
       setEmail("");
       setPassword("");
       alert("Logged in successfully!");
-      console.log(data);
     } catch (err) {
       console.error(err);
     }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
+    <div className="flex items-center justify-center min-h-screen bg-gray-50">
       <form
-        onSubmit={handleFetch}
-        className="relative rounded-2xl p-8 w-full max-w-sm border border-purple-800 bg-white/5 backdrop-blur-xl shadow-[0_0_30px_rgba(240,0,240,0.3)] hover:shadow-[0_0_50px_rgba(240,0,240,0.6)] transition duration-300"
+        onSubmit={handleLogin}
+        className="w-full max-w-sm p-8 bg-white rounded-xl shadow-md space-y-6"
       >
-        <div className="absolute inset-0 rounded-2xl p-[2px] bg-gradient-to-r from-black/40 to-purple-500 blur-md opacity-60 -z-10"></div>
-        <h2 className="text-2xl font-bold text-center text-white mb-6">
-          Welcome Back!!
+        <h2 className="text-2xl font-semibold text-center text-gray-800">
+          Welcome Back
         </h2>
 
         <div className="flex flex-col gap-4">
@@ -50,29 +45,34 @@ const Login = () => {
             placeholder="Email Address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="border border-purple-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-400 transition text-white"
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            required
           />
-
           <input
             type="password"
-            placeholder="Enter Password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="border border-purple-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-400 transition text-white"
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            required
           />
 
           <button
             type="submit"
-            className="bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition focus:ring-2 focus:ring-blue-400 focus:outline-none cursor-pointer"
+            className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition"
           >
             Log In
           </button>
         </div>
 
-        <p className="text-sm text-center text-white mt-4">
+        <p className="text-center text-gray-600 text-sm">
           Don’t have an account?{" "}
-          <button onClick={()=>navigate("/signup")} className="text-blue-600 hover:underline">
-            SignUp
+          <button
+            type="button"
+            onClick={() => navigate("/signup")}
+            className="text-blue-600 hover:underline"
+          >
+            Sign Up
           </button>
         </p>
       </form>

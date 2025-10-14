@@ -12,7 +12,7 @@ const Expense = () => {
   const handleDelete = async (expenseId) => {
     try {
       const response = await fetch(
-        `/api/expenses/${expenseId}`,
+        `http://localhost:5000/api/expenses/${expenseId}`,
         {
           method: "DELETE",
         }
@@ -63,33 +63,33 @@ const Expense = () => {
   };
 
   return (
-    <div className="min-h-screen py-10 px-5">
-      <h2 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-pink-400 to-purple-400 animate-pulse mb-12 drop-shadow-[0_0_10px_rgba(255,255,255,0.6)]">
+    <div className="min-h-screen py-10 px-5 bg-gray-50">
+      <h2 className="text-3xl font-bold text-center text-gray-800 mb-10">
         Expenses
       </h2>
       <input
         placeholder="Search By Category...."
         value={newCategory}
         onChange={(e) => setNewCategory(e.target.value)}
-        className="block mx-auto mb-10 w-full max-w-md px-4 py-2 text-pink-300 placeholder-pink-300 bg-transparent border-2 border-pink-500 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-400 backdrop-blur-md shadow-[0_0_10px_rgba(255,0,150,0.5)] transition-all duration-300"
+        className="block mx-auto mb-10 w-full max-w-md px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white shadow-sm"
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {paginatedExpenses.map((expense) => (
           <div
             key={expense._id}
-            className="bg-pink-400/50 border border-pink-500 shadow-lg rounded-2xl p-6 hover:shadow-2xl transition-shadow duration-300 [box-shadow:0_0_10px_rgba(240,100,100,0.8),0_0_10px_rgba(240,100,100,0.8),0_0_10px_rgba(240,100,100,0.8),0_0_10px_rgba(100,100,240,0.8)] hover:[box-shadow:0_0_10px_rgba(240,100,100,0.8),0_0_20px_rgba(240,100,100,0.8),0_0_20px_rgba(240,100,100,0.8),0_0_30px_rgba(240,100,100,0.8)]"
+            className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all"
           >
             <div className="flex justify-between items-center mb-3">
-              <h3 className="text-xl font-semibold text-white">
+              <h3 className="text-lg font-semibold text-gray-800">
                 {expense.description}
               </h3>
-              <span className="text-sm px-3 py-1 rounded-full bg-green-100 text-green-700 [box-shadow:0_0_10px_rgba(50,240,50,0.8),0_0_10px_rgba(50,240,50,0.8),0_0_10px_rgba(50,240,50,0.8),0_0_10px_rgba(50,240,50,0.8)]">
+              <span className="text-sm px-3 py-1 rounded-full bg-blue-100 text-blue-700 font-medium">
                 {expense.category}
               </span>
             </div>
 
-            <div className="text-white space-y-1">
+            <div className="text-gray-700 space-y-1 text-sm">
               <p>
                 <span className="font-medium">Amount:</span> ₹
                 {expense.amount.toLocaleString()}
@@ -109,7 +109,7 @@ const Expense = () => {
             </div>
 
             <div className="mt-4 bg-gray-50 rounded-lg p-3">
-              <h4 className="font-medium text-gray-800 mb-2">Split Details</h4>
+              <h4 className="font-medium text-gray-800 mb-2 text-sm">Split Details</h4>
               <ul className="space-y-1 text-gray-600 text-sm">
                 {expense.splitDetails.map((split) => (
                   <li
@@ -123,7 +123,7 @@ const Expense = () => {
               </ul>
             </div>
 
-            <p className="text-xs text-right text-pink-400 italic tracking-wider mt-3">
+            <p className="text-xs text-right text-black italic tracking-wider mt-3">
               {new Date(expense.date).toLocaleDateString("en-IN", {
                 year: "numeric",
                 month: "short",
@@ -141,21 +141,19 @@ const Expense = () => {
           </div>
         ))}
       </div>
-      <div className="flex w-full max-w-xl justify-between mx-auto mt-10">
+      <div className="flex justify-center items-center gap-4 mt-10">
         <button
           onClick={handlePrev}
           disabled={currentPage === 1}
-          className="border border-white rounded-lg text-white p-2 hover:bg-white/60 hover:text-black transition duration-200"
+          className="px-4 py-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-100 disabled:opacity-50"
         >
           Prev
         </button>
-        <span className="border border-white rounded-lg text-white p-2 hover:bg-white/60 hover:text-black transition duration-200">
-          {currentPage}
-        </span>
+        <span className="text-gray-700 font-medium">{currentPage}</span>
         <button
           onClick={handleNext}
           disabled={currentPage === totalPages}
-          className="border border-white rounded-lg text-white p-2 hover:bg-white/60 hover:text-black transition duration-200"
+          className="px-4 py-2 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-100 disabled:opacity-50"
         >
           Next
         </button>

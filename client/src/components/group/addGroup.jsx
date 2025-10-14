@@ -26,7 +26,7 @@ const AddGroup = () => {
     }
 
     try {
-      const response = await fetch("/api/groups", {
+      const response = await fetch("http://localhost:5000/api/groups", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         credentials: "include",

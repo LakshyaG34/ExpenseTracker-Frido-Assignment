@@ -28,13 +28,13 @@ function App() {
   useEffect(() => {
     const handleGroups = async () => {
       try {
-        const responseGroups = await fetch("/api/groups", {
+        const responseGroups = await fetch("http://localhost:5000/api/groups", {
           credentials: "include",
         });
         const groups = await responseGroups.json();
         dispatch(setGroup(groups));
         const responseUsers = await fetch(
-          "/api/auth/users",
+          "http://localhost:5000/api/auth/users",
           {
             credentials: "include",
           }
@@ -42,7 +42,7 @@ function App() {
         const users = await responseUsers.json();
         dispatch(setUser(users));
         const responseExpense = await fetch(
-          "/api/expenses/all",
+          "http://localhost:5000/api/expenses/all",
           {
             credentials: "include",
           }
@@ -50,7 +50,7 @@ function App() {
         const expense = await responseExpense.json();
         dispatch(setExpense(expense));
         const responseBalances = await fetch(
-          "/api/balances/all",
+          "http://localhost:5000/api/balances/all",
           {
             credentials: "include",
           }
@@ -65,7 +65,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="bg-gradient-to-br from-black via-gray-900 to-gray-800 playwrite-font">
+    <div className="bg-white">
       <Navbar />
       <Routes>
         <Route path="/login" element={<Login />} />
