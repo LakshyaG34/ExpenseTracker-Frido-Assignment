@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAuthContext } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -21,27 +22,29 @@ const Signup = () => {
         credentials: "include",
         body: JSON.stringify({ name, email, password, confirmPassword }),
       });
-      if (!response.ok) throw new Error("Signup failed");
+      if (!response.ok) {
+        throw new Error("Signup failed");
+      }
       const data = await response.json();
       setUser(data);
       setName("");
       setEmail("");
       setPassword("");
       setConfirmPassword("");
-      alert("Signed up successfully!");
+      toast.success("Signed up successfully!");
     } catch (err) {
-      console.error(err);
+      console.log(err);
+      toast.error(err.message);
     }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
+    <div className="flex items-center justify-center min-h-screen bg-gray-50">
       <form
         onSubmit={handleFetch}
-        className="relative rounded-2xl p-8 w-full max-w-sm border border-purple-800 bg-white/5 backdrop-blur-xl shadow-[0_0_30px_rgba(240,0,240,0.3)] hover:shadow-[0_0_50px_rgba(240,0,240,0.6)] transition duration-300"
+        className="w-full max-w-sm p-8 bg-white rounded-xl shadow-md space-y-6"
       >
-        <div className="absolute inset-0 rounded-2xl p-[2px] bg-gradient-to-r from-black/40 to-purple-500 blur-md opacity-60 -z-10"></div>
-        <h2 className="text-2xl font-bold text-center text-white mb-6">
+        <h2 className="text-2xl font-semibold text-center text-gray-800">
           Create an Account
         </h2>
 
@@ -51,7 +54,7 @@ const Signup = () => {
             placeholder="Full Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="border text-purple-300 border-purple-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400 transition"
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
 
           <input
@@ -59,7 +62,7 @@ const Signup = () => {
             placeholder="Email Address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="border text-purple-300 border-purple-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400 transition"
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
 
           <input
@@ -67,7 +70,7 @@ const Signup = () => {
             placeholder="Create Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="border text-purple-300 border-purple-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
 
           <input
@@ -75,18 +78,18 @@ const Signup = () => {
             placeholder="Confirm Password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className="border text-purple-300 border-purple-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
 
           <button
             type="submit"
-            className="bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition focus:ring-2 focus:ring-blue-400 focus:outline-none cursor-pointer"
+            className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition"
           >
             Sign Up
           </button>
         </div>
 
-        <p className="text-sm text-center text-white mt-4">
+        <p className="text-center text-gray-600 text-sm">
           Already have an account?{" "}
           <button onClick={()=>navigate("/login")} className="text-blue-600 hover:underline">
             Log in

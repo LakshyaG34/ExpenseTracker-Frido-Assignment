@@ -3,6 +3,7 @@ import { useAuthContext } from "../context/authContext";
 import { useState } from "react";
 // import image1 from "../assets/1.jpg"
 import image2 from "../assets/2.webp"
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -17,14 +18,15 @@ const Navbar = () => {
         throw new Error("Error logging out");
       }
       setUser(null);
-      alert("Logged out!!!");
+      // alert("Logged out!!!");
+      toast.success("Logged Out successfully")
     } catch (err) {
       console.log(err);
     }
   };
   const [isOpen, setIsOpen] = useState(false);
   return (
-      <div className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-gray-200 z-50">
+      <div className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-xl z-50">
         <div className="flex justify-between items-center p-4">
           <div>
             <button

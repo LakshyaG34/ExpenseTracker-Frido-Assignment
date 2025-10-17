@@ -103,14 +103,14 @@ const AddExpense = () => {
           onChange={(e) => setDescription(e.target.value)}
         />
 
-        <label className="font-semibold">Description</label>
+        <label className="font-semibold">Amount</label>
         <input
           className="w-full text-black border border-gray-300 focus:border-blue-400 focus:ring-blue-200 p-2 rounded-lg outline-none"
           placeholder="Enter Amount"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
         />
-        <label className="font-semibold">Description</label>
+        <label className="font-semibold">Paid By</label>
         <div className="relative">
           <button
             type="button"
@@ -138,7 +138,7 @@ const AddExpense = () => {
             </ul>
           )}
         </div>
-        <label className="font-semibold">Description</label>
+        <label className="font-semibold">Group</label>
         <div className="relative">
           <button
             type="button"
@@ -148,7 +148,7 @@ const AddExpense = () => {
             {selectedGroup ? `Group: ${group.find((g) => g._id === selectedGroup)?.name}` : "Select Group"}
           </button>
           {isOpen2 && (
-            <ul className="absolute z-10 bg-white border rounded mt-1 w-full max-h-32 overflow-auto">
+            <ul className="absolute z-10 bg-gray-600 border rounded mt-1 w-full max-h-32 overflow-auto">
               {group.length === 0
                 ? <li className="p-2">Loading Groups...</li>
                 : group.map((g) => (
@@ -167,7 +167,7 @@ const AddExpense = () => {
           )}
         </div>
 
-        <label className="font-semibold">Description</label>
+        <label className="font-semibold">Category</label>
         <input
           className="w-full text-black border border-gray-300 focus:border-blue-400 focus:ring-blue-200 p-2 rounded-lg outline-none"
           placeholder="Enter Category"
@@ -188,11 +188,11 @@ const AddExpense = () => {
         </div>
         {selectedGroup && splitDetails.length > 0 && (
           <div className="border p-2 rounded mt-2 text-white">
-            <h4 className="font-semibold mb-1 text-white">Split Details:</h4>
+            <h4 className="font-semibold mb-1 text-black">Split Details:</h4>
             {splitDetails.map((s) => {
               const member = group.find((g) => g._id === selectedGroup).members.find((m) => m._id === s.userId);
               return (
-                <div key={s.userId} className="flex justify-between items-center mb-1 text-white">
+                <div key={s.userId} className="flex justify-between items-center mb-1 text-black">
                   <span>{member?.name}</span>
                   {splitType === "percentage" ? (
                     <input
@@ -215,7 +215,7 @@ const AddExpense = () => {
             })}
           </div>
         )}
-        <div className="text-white">
+        <div className="text-black">
           <label className="mr-2 font-semibold">Date:</label>
           <input
             type="date"

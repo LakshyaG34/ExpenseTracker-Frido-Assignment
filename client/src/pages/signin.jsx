@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAuthContext } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -23,7 +24,8 @@ const Login = () => {
       setUser(data);
       setEmail("");
       setPassword("");
-      alert("Logged in successfully!");
+      // alert("Logged in successfully!");
+      toast.success("Signed In Successfully");
     } catch (err) {
       console.error(err);
     }
