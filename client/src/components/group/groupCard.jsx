@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { removeGroup } from "../../redux/groupSlice";
+import toast from "react-hot-toast";
 
 const GroupCard = ({ name, members, createdBy, id }) => {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const GroupCard = ({ name, members, createdBy, id }) => {
       );
       if (!response.ok) throw new Error("Error deleting group");
       dispatch(removeGroup(groupId));
-      alert("Group deleted successfully");
+      toast.success("Group Deleted Successfully");
     } catch (err) {
       console.error(err);
     }

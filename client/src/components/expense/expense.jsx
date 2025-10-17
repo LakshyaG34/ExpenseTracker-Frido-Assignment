@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeExpense } from "../../redux/expenseSlice.js";
+import toast from "react-hot-toast";
 
 const Expense = () => {
   const [newCategory, setNewCategory] = useState("");
@@ -21,7 +22,7 @@ const Expense = () => {
         throw new Error("Error in handleExpense Delete");
       }
       dispatch(removeExpense(expenseId));
-      alert("Expense Deleted!!!");
+      toast.success("Expense Deleted Successfully");
     } catch (err) {
       console.log(err);
     }

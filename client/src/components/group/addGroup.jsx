@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addGroup } from "../../redux/groupSlice.js";
+import toast from "react-hot-toast";
 
 const AddGroup = () => {
   const user = useSelector((state) => state.user);
@@ -40,7 +41,7 @@ const AddGroup = () => {
       if (!response.ok) throw new Error("Cannot create group");
       const data = await response.json();
       dispatch(addGroup(data));
-      alert("Group Created");
+      toast.success("Group Created Successfully");
     } catch (err) {
       console.log(err);
     }

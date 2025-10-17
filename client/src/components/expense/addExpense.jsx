@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addExpense } from "../../redux/expenseSlice.js";
+import toast from "react-hot-toast";
 
 const AddExpense = () => {
   const user = useSelector((state) => state.user);
@@ -81,7 +82,7 @@ const AddExpense = () => {
       if (!response.ok) throw new Error("Cannot Send Expense");
       const data = await response.json();
       dispatch(addExpense(data));
-      alert("Expense Added");
+      toast.success("Expense Added Successfully");
       console.log("Expense added");
     } catch (err) {
       console.log(err);
