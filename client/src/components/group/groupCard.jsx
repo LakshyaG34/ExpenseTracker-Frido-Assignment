@@ -8,7 +8,7 @@ const GroupCard = ({ name, members, createdBy, id }) => {
   const handleDelete = async (groupId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/groups/${groupId}`,
+        `/api/groups/${groupId}`,
         { method: "DELETE" }
       );
       if (!response.ok) throw new Error("Error deleting group");

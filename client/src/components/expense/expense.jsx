@@ -13,7 +13,7 @@ const Expense = () => {
   const handleDelete = async (expenseId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/expenses/${expenseId}`,
+        `/api/expenses/${expenseId}`,
         {
           method: "DELETE",
         }

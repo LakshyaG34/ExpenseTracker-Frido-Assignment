@@ -28,13 +28,13 @@ function App() {
   useEffect(() => {
     const handleGroups = async () => {
       try {
-        const responseGroups = await fetch("http://localhost:5000/api/groups", {
+        const responseGroups = await fetch("/api/groups", {
           credentials: "include",
         });
         const groups = await responseGroups.json();
         dispatch(setGroup(groups));
         const responseUsers = await fetch(
-          "http://localhost:5000/api/auth/users",
+          "/api/auth/users",
           {
             credentials: "include",
           }
@@ -42,7 +42,7 @@ function App() {
         const users = await responseUsers.json();
         dispatch(setUser(users));
         const responseExpense = await fetch(
-          "http://localhost:5000/api/expenses/all",
+          "/api/expenses/all",
           {
             credentials: "include",
           }
@@ -50,7 +50,7 @@ function App() {
         const expense = await responseExpense.json();
         dispatch(setExpense(expense));
         const responseBalances = await fetch(
-          "http://localhost:5000/api/balances/all",
+          "/api/balances/all",
           {
             credentials: "include",
           }
